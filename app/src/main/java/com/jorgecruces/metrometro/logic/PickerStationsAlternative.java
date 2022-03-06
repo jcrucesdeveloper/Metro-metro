@@ -4,6 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.jorgecruces.metrometro.logger.LoggerSout;
 import com.jorgecruces.metrometro.model.Station;
 
 import java.util.ArrayList;
@@ -12,24 +13,30 @@ import java.util.Random;
 public class PickerStationsAlternative {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public ArrayList<Station> getStationAlternative(ArrayList<Station> listStations, int position) {
+    public ArrayList<Station> getStationAlternatives(ArrayList<Station> listStations, int position) {
 
         ArrayList<Station> stationsOut = new ArrayList<>();
         ArrayList<Station> tempListStation = new ArrayList<>(listStations);
 
-        int counter = 4;
-        for (int i = (position + 1); i < tempListStation.size(); i++) {
+        // Remove actual position
+        tempListStation.remove(position);
+        // Remove correct Answer
+        tempListStation.remove(position);
 
+        int counter = 4;
+        for (int i = (position + 2); i < listStations.size(); i++) {
             // Add into the temp list a selected number of times
             for (int j = counter * 2; j >= 0; j--) {
-                tempListStation.add(listStations.get(position));
+                tempListStation.add(listStations.get(i));
             }
             counter--;
         }
 
+
         int sizeStation = 3;
+
+        Random random = new Random();
         while (sizeStation > 0) {
-            Random random = new Random();
             Station tempStation = tempListStation.get(random.nextInt(tempListStation.size()));
             stationsOut.add(tempStation);
             tempListStation.removeIf(station -> station.getNumber() == tempStation.getNumber());
