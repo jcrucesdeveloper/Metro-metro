@@ -4,13 +4,18 @@ import java.util.ArrayList;
 
 public class Metro {
     private String name;
-    private ArrayList<Station> stations;
+    private ArrayList<Line> lines;
 
-    public ArrayList<Station> getStations() {
-        return stations;
-    }
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<Line> getLines() {
+        return lines;
+    }
+
+    public void setLines(ArrayList<Line> lines) {
+        this.lines = lines;
     }
 }

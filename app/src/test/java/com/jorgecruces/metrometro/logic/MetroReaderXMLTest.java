@@ -11,14 +11,10 @@ public class MetroReaderXMLTest {
 
     @Before
     public void setUp() {
-        metroReaderXML = new MetroReaderXML();
     }
 
     @Test
     public void getMetroNameTest() {
-        String name = metroReaderXML.getMetroName("lol");
-
-        assertNotNull(name);
     }
 
 

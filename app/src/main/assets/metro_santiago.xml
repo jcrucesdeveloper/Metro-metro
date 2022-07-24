@@ -1,4 +1,4 @@
-<metro name="Santiago Metro">
+<metro name="Metro de Santiago">
     <line name="1">
         <station number="1">San Pablo</station>
         <station number="2">Neptuno</station>
