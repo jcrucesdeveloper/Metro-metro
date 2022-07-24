@@ -34,7 +34,6 @@ public class PickerStationsAlternativesTest {
 
     @Test
     public void testPickerStationsAlternatives() {
-
         ArrayList<Station> stationsAlternativeStationAlternative = pickerStationsAlternative.getStationAlternative(stations,1);
         assertNotEquals(0,stationsAlternativeStationAlternative.size());
     }

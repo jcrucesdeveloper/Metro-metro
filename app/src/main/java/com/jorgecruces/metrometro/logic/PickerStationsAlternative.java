@@ -37,6 +37,5 @@ public class PickerStationsAlternative {
         }
 
         return stationsOut;
-
         }
     }
