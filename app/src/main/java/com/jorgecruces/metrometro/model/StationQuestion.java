@@ -1,6 +1,5 @@
 package com.jorgecruces.metrometro.model;
 
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -12,7 +11,6 @@ public class StationQuestion {
     private ArrayList<Station> alternativesStation;
 
     public StationQuestion() {
-        correctStation = new Station(0, "station0");
         alternativesStation = new ArrayList<>();
     }
 

@@ -6,6 +6,9 @@ public class Metro {
     private String name;
     private ArrayList<Line> lines;
 
+    public Metro() {
+        lines = new ArrayList<Line>();
+    }
 
     public String getName() {
         return name;
@@ -17,5 +20,9 @@ public class Metro {
 
     public void setLines(ArrayList<Line> lines) {
         this.lines = lines;
+    }
+
+    public void addLine(Line line) {
+            lines.add(line);
     }
 }

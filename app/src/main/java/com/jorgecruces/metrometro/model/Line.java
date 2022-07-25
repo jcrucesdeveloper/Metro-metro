@@ -7,6 +7,12 @@ public class Line {
     private String name;
     private ArrayList<Station> stations;
 
+    public Line(String name) {
+        stations = new ArrayList<>();
+
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -17,5 +23,9 @@ public class Line {
 
     public ArrayList<Station> getStations() {
         return stations;
+    }
+
+    public void addStation(Station station) {
+        this.stations.add(station);
     }
 }

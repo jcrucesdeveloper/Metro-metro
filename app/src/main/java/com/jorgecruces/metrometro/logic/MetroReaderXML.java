@@ -3,7 +3,9 @@ package com.jorgecruces.metrometro.logic;
 import android.content.Context;
 import android.util.Log;
 
+import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
+import com.jorgecruces.metrometro.model.Station;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -13,7 +15,6 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.prefs.NodeChangeEvent;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,22 +23,17 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class MetroReaderXML {
 
-    private String filename;
     private Context context;
 
-    public MetroReaderXML(String filename, Context context) {
-
-        Log.d("WORKING", "lolazo");
-        this.filename = filename;
+    public MetroReaderXML(Context context) {
         this.context = context;
-        this.readXML();
     }
 
-    public void readXML() {
+    public Metro createMetro() {
 
+        // Create metro
+        Metro metro = new Metro();
         try {
-
-            Log.d("lol", "dentro");
             InputStream in = this.context.getAssets().open("metro_santiago.xml");
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -56,33 +52,29 @@ public class MetroReaderXML {
                 Node lineNode =  nList.item(i);
                 Element lineElement = (Element) lineNode;
 
+                String lineName = lineElement.getAttribute("name");
+
                 NodeList stations  = lineNode.getChildNodes();
+                Line tempLine = new Line(lineName);
 
                 for (int j = 0; j < stations.getLength(); j++) {
                     Node stationNode = stations.item(j);
                     if (stationNode.getNodeType() == Node.ELEMENT_NODE) {
-                        Node firstChild = stationNode.getFirstChild();
-                        Log.d("lol", firstChild.getNodeValue());
+                        Node stationNodeFirstChild = stationNode.getFirstChild();
+                        String nameStation = stationNodeFirstChild.getNodeValue();
+
+                        Station tempStation = new Station(nameStation);
+                        tempLine.addStation(tempStation);
                     }
-
                 }
-
-
-//                for (int j = 0; j < stations.getLength(); j++) {
-//                    Node stationNode = stations.item(i);
-//                }
-
+                metro.addLine(tempLine);
             }
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
+        } catch (IOException | ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
-
+        return metro;
     }
 
     public String getMetroName(String filename) {

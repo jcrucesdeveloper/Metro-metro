@@ -39,7 +39,7 @@ public class PickerStationsAlternative {
         while (sizeStation > 0) {
             Station tempStation = tempListStation.get(random.nextInt(tempListStation.size()));
             stationsOut.add(tempStation);
-            tempListStation.removeIf(station -> station.getNumber() == tempStation.getNumber());
+           // tempListStation.removeIf(station -> station.getNumber() == tempStation.getNumber());
             sizeStation--;
         }
 
