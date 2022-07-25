@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         metroReaderXML = new MetroReaderXML( this);
         Metro metro = metroReaderXML.createMetro();
         ArrayList<Line> lines = metro.getLines();
-        ArrayList<Station> stations = lines.get(0).getStations();
+        ArrayList<Station> stations = lines.get(1).getStations();
         for(Station station : stations) {
             Log.d("lol", station.getName());
         }
