@@ -47,11 +47,15 @@ public class PickerStationsAlternativesTest {
 
     @Test
     public void testPickerStationsAlternatives() {
+<<<<<<< HEAD
 
         ArrayList<Station> stationsAlternativeStationAlternative = pickerStationsAlternative.getStationAlternatives(stations,0);
         LoggerSout loggerSout = new LoggerSout();
 
         loggerSout.printArrayList(stationsAlternativeStationAlternative);
+=======
+        ArrayList<Station> stationsAlternativeStationAlternative = pickerStationsAlternative.getStationAlternative(stations,1);
+>>>>>>> e90745559deea2d09d8de6e597418d4e0c1b84f0
         assertNotEquals(0,stationsAlternativeStationAlternative.size());
     }
 
