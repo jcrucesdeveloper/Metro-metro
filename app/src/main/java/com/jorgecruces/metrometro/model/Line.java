@@ -9,7 +9,6 @@ public class Line {
 
     public Line(String name) {
         stations = new ArrayList<>();
-
         this.name = name;
     }
 

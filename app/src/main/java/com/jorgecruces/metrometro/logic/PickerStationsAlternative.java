@@ -12,37 +12,44 @@ import java.util.Random;
 
 public class PickerStationsAlternative {
 
+
+    /**
+     * Position Starts from 1 to len(stations)
+     *
+     * @param stations
+     * @param position
+     * @return
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public ArrayList<Station> getStationAlternatives(ArrayList<Station> listStations, int position) {
+    public ArrayList<Station> getAlternatives(ArrayList<Station> stations, int position) {
 
-        ArrayList<Station> stationsOut = new ArrayList<>();
-        ArrayList<Station> tempListStation = new ArrayList<>(listStations);
+        ArrayList<Station> alternatives = new ArrayList<>();
+        ArrayList<Station> alternativesPickerList = new ArrayList<>();
 
-        // Remove actual position
-        tempListStation.remove(position);
-        // Remove correct Answer
-        tempListStation.remove(position);
-
+        // Comenzamos desde una posicion + 1  a la alternativa correcta
+        int currentPosition = position + 1;
         int counter = 4;
-        for (int i = (position + 2); i < listStations.size(); i++) {
-            // Add into the temp list a selected number of times
+
+        for (int i = currentPosition; i < stations.size(); i++) {
             for (int j = counter * 2; j >= 0; j--) {
-                tempListStation.add(listStations.get(i));
+                alternativesPickerList.add(stations.get(i));
             }
             counter--;
         }
 
-
-        int sizeStation = 3;
-
         Random random = new Random();
-        while (sizeStation > 0) {
-            Station tempStation = tempListStation.get(random.nextInt(tempListStation.size()));
-            stationsOut.add(tempStation);
-           // tempListStation.removeIf(station -> station.getNumber() == tempStation.getNumber());
-            sizeStation--;
+        // Agregamos a la lista de alternativas las posibles alternativas
+        int sizeAlternatives = 3;
+
+        while (sizeAlternatives > 0) {
+            Station tempStation = alternativesPickerList.get(random.nextInt(alternativesPickerList.size()));
+            alternatives.add(tempStation);
+            alternativesPickerList.removeIf(station -> station.getName().equals(tempStation.getName()));
+            sizeAlternatives--;
         }
 
-        return stationsOut;
-        }
+        return alternatives;
     }
+}
+
+

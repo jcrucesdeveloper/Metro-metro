@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import android.util.Log;
+
 import com.jorgecruces.metrometro.logger.LoggerSout;
 import com.jorgecruces.metrometro.model.Station;
 
@@ -22,16 +24,16 @@ public class PickerStationsAlternativesTest {
 
         stations = new ArrayList<>();
         pickerStationsAlternative = new PickerStationsAlternative();
-        Station station1 = new Station(1,"lo1");
-        Station station2 = new Station(2,"lol2");
-        Station station3 = new Station(3,"lol3");
-        Station station4 = new Station(4,"lol4");
-        Station station5 = new Station(5,"lol5");
-        Station station6 = new Station(6,"lol6");
-        Station station7 = new Station(7,"lol7");
-        Station station8 = new Station(8,"lol8");
-        Station station9 = new Station(9,"lol9");
-        Station station10 = new Station(10,"lol10");
+        Station station1 = new Station("lo1"); // 1
+        Station station2 = new Station("lol2");
+        Station station3 = new Station("lol3");
+        Station station4 = new Station("lol4");
+        Station station5 = new Station("lol5");
+        Station station6 = new Station("lol6");
+        Station station7 = new Station("lol7");
+        Station station8 = new Station("lol8");
+        Station station9 = new Station("lol9");
+        Station station10 = new Station("lol10");
 
         stations.add(station1);
         stations.add(station2);
@@ -47,16 +49,12 @@ public class PickerStationsAlternativesTest {
 
     @Test
     public void testPickerStationsAlternatives() {
-<<<<<<< HEAD
 
-        ArrayList<Station> stationsAlternativeStationAlternative = pickerStationsAlternative.getStationAlternatives(stations,0);
-        LoggerSout loggerSout = new LoggerSout();
+        ArrayList<Station> alternatives = pickerStationsAlternative.getAlternatives(stations, 1);
+        for(Station station: alternatives) {
+            System.out.println(station.getName());
+        }
 
-        loggerSout.printArrayList(stationsAlternativeStationAlternative);
-=======
-        ArrayList<Station> stationsAlternativeStationAlternative = pickerStationsAlternative.getStationAlternative(stations,1);
->>>>>>> e90745559deea2d09d8de6e597418d4e0c1b84f0
-        assertNotEquals(0,stationsAlternativeStationAlternative.size());
     }
 
 

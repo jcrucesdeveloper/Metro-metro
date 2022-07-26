@@ -1,6 +1,6 @@
 <metro name="Metro de Santiago">
     <line name="Linea 1">
-        <station number="1">San Pablo</station>
+        <station>San Pablo</station>
         <station number="2">Neptuno</station>
         <station number="3">Pajaritos</station>
         <station number="4">Las Rejas</station>
