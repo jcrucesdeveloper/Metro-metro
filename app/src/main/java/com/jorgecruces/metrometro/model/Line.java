@@ -5,11 +5,13 @@ import java.util.ArrayList;
 
 public class Line {
     private String name;
+    private String color;
     private ArrayList<Station> stations;
 
-    public Line(String name) {
+    public Line(String name,String color) {
         stations = new ArrayList<>();
         this.name = name;
+        this.color = color;
     }
 
     public String getName() {
@@ -26,5 +28,9 @@ public class Line {
 
     public void addStation(Station station) {
         this.stations.add(station);
+    }
+
+    public String getColor() {
+        return color;
     }
 }

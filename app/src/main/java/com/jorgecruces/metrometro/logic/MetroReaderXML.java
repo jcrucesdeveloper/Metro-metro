@@ -53,9 +53,11 @@ public class MetroReaderXML {
                 Element lineElement = (Element) lineNode;
 
                 String lineName = lineElement.getAttribute("name");
+                String lineColor = lineElement.getAttribute("color");
+
 
                 NodeList stations  = lineNode.getChildNodes();
-                Line tempLine = new Line(lineName);
+                Line tempLine = new Line(lineName,lineColor);
 
                 for (int j = 0; j < stations.getLength(); j++) {
                     Node stationNode = stations.item(j);

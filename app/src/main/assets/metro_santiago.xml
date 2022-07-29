@@ -1,5 +1,5 @@
 <metro name="Metro de Santiago">
-    <line name="Linea 1">
+    <line name="Linea 1" color="#F32727">
         <station>San Pablo</station>
         <station number="2">Neptuno</station>
         <station number="3">Pajaritos</station>
@@ -21,7 +21,7 @@
         <station number="10">Pedro de Valdivia</station>
         <station number="10">Los Leones</station>
     </line>
-    <line name="Linea 2">
+    <line name="Linea 2" color="#FFD64B">
         <station>Vespucio Norte</station>
         <station>Zapadores</station>
         <station>Dorsal</station>
@@ -44,7 +44,7 @@
         <station>Lo Ovalle</station>
         <station>La Cisterna</station>
     </line>
-    <line name="Linea 3">
+    <line name="Linea 3" color="#C06616">
         <station>Los Libertadores</station>
         <station>Cardenal Caro</station>
         <station>Vivaceta</station>
@@ -65,7 +65,7 @@
         <station>Fernando Castillo Velasco</station>
     </line>
 
-    <line name="Linea 4">
+    <line name="Linea 4" color="#2127CE">
         <station>Tobalaba</station>
         <station>Cristobal Colon</station>
         <station>Francisco Bilbao</station>
@@ -90,7 +90,7 @@
         <station>Las Mercedes</station>
         <station>Plaza de Puente Alto</station>
     </line>
-    <line name="5">
+    <line name="Linea 5" color="#04C43E">
         <station>Plaza de Maipu</station>
         <station>Santiago Bueras</station>
         <station>Del Sol</station>
@@ -121,7 +121,7 @@
         <station>Bellavista de La Florida</station>
         <station>Vicente Valdes</station>
     </line>
-    <line name="Linea 6">
+    <line name="Linea 6" color="#A53CEB">
         <station>Los Leones</station>
         <station>Ines de Suarez</station>
         <station>Ñuñoa</station>
