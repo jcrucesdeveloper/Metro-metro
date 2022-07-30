@@ -11,16 +11,12 @@ import java.util.ArrayList;
 
 public class MetroPlayActivity extends AppCompatActivity {
 
-    private ArrayList<Station> stationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metro_play);
-/*
-        setUpStationList();
-        startGame();
-*/
+
     }
 
 }

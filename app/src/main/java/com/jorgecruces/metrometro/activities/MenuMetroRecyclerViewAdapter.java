@@ -2,6 +2,7 @@ package com.jorgecruces.metrometro.activities;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jorgecruces.metrometro.R;
@@ -38,9 +41,18 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
 
     @Override
     public void onBindViewHolder(@NonNull MenuMetroRecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.lineaMetroName.setText(metroMenu.get(position).getMetroName());
+
+        String lineaName = metroMenu.get(position).getMetroName();
+        holder.lineaMetroName.setText(lineaName);
+
         int color = Color.parseColor(metroMenu.get(position).getColor());
         holder.backgroundMetroMenu.setColorFilter(color);
+
+        holder.cardView.setOnClickListener(view -> {
+            Intent intent = new Intent(this.context.getApplicationContext(), PlayGameActivity.class);
+            intent.putExtra("LINEA", lineaName);
+            this.context.startActivity(intent);
+        });
     }
 
     @Override
@@ -52,10 +64,12 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
         // On createMethod
         TextView lineaMetroName;
         ImageView backgroundMetroMenu;
+        CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             lineaMetroName = itemView.findViewById(R.id.lineaName);
             backgroundMetroMenu = itemView.findViewById(R.id.backgroundMetroMenu);
+            cardView = itemView.findViewById(R.id.cardViewMenu);
         }
     }
 }
