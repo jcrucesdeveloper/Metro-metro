@@ -26,8 +26,8 @@ public class PickerStationsAlternative {
         ArrayList<Station> alternatives = new ArrayList<>();
         ArrayList<Station> alternativesPickerList = new ArrayList<>();
 
-        // Comenzamos desde una posicion + 1  a la alternativa correcta
-        int currentPosition = position + 1;
+        // Comenzamos desde una posicion + 2  a la alternativa correcta
+        int currentPosition = position + 2;
         int counter = 4;
 
         for (int i = currentPosition; i < stations.size(); i++) {

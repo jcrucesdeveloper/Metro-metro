@@ -6,12 +6,74 @@
     android:layout_height="match_parent"
     tools:context=".activities.PlayGameActivity">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="64dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="331dp"
+        android:onClick="goBackToMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="130dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="464dp"
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Lineas Metro"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAlternative4"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="SAN PEDRO"
+        app:layout_constraintStart_toEndOf="@+id/textViewAlternative3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAlternative2" />
+
+    <TextView
+        android:id="@+id/textViewAlternative2"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="432dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="SAN PEDRO"
+        app:layout_constraintStart_toEndOf="@+id/textViewAlternative1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAlternative3"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="SAN PEDRO"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAlternative1" />
+
+    <TextView
+        android:id="@+id/textViewAlternative1"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="432dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         android:gravity="center_horizontal|center_vertical"
         android:text="SAN PEDRO"
@@ -19,15 +81,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="130dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="464dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        android:id="@+id/textViewCurrentStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="CURRENT  LINEA"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
