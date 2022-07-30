@@ -25,7 +25,6 @@ public class PlayGameActivity extends AppCompatActivity {
         if (extra != null) {
             lineName = extra.getString("LINEA");
             this.initializeLineData(lineName);
-            Toast.makeText(this, this.line.getStations().get(0).getName(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -33,7 +32,6 @@ public class PlayGameActivity extends AppCompatActivity {
         MetroReaderXML metroReaderXML = new MetroReaderXML(this);
         Metro metro = metroReaderXML.createMetro();
         ArrayList<Line> lines = metro.getLines();
-
         for (Line tempLine: lines) {
             if (tempLine.getName().equals(lineName)) {
                 this.line = tempLine;

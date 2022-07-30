@@ -6,4 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".activities.PlayGameActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="130dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="464dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="SAN PEDRO"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="130dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="464dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="SAN PEDRO"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
