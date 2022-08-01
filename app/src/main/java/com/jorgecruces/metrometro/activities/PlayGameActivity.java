@@ -42,13 +42,13 @@ public class PlayGameActivity extends AppCompatActivity {
         if (extra != null) {
             lineName = extra.getString("LINEA");
             title.setText(lineName);
-            this.initializeLineData(lineName);
+            this.initializeData(lineName);
             this.setStationQuestion(position);
         }
 
     }
 
-    private void initializeLineData(String lineName) {
+    private void initializeData(String lineName) {
         MetroReaderXML metroReaderXML = new MetroReaderXML(this);
         Metro metro = metroReaderXML.createMetro();
         ArrayList<Line> lines = metro.getLines();
@@ -59,6 +59,11 @@ public class PlayGameActivity extends AppCompatActivity {
             }
         }
         this.stations = this.line.getStations();
+
+        // Set Level max Position
+        TextView textViewMaxPosition = findViewById(R.id.textViewMaxPosition);
+        String maxPositionStr = String.valueOf(this.stations.size());
+        textViewMaxPosition.setText(maxPositionStr);
     }
 
     private void setCurrentStation(int position) {
@@ -70,11 +75,18 @@ public class PlayGameActivity extends AppCompatActivity {
     private void setStationQuestion(int position) {
         this.setCurrentStation(position);
         this.setCorrectStation(position);
+        this.setPositionNumber(position);
         this.setAlternatives(position);
     }
 
     private void setCorrectStation(int position) {
         this.correctStation = this.stations.get(position + 1);
+    }
+
+    private void setPositionNumber(int position) {
+        TextView currentPositionTextView = findViewById(R.id.textViewCurrentPosition);
+        String currentPositionStr = String.valueOf(position);
+        currentPositionTextView.setText(currentPositionStr);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
