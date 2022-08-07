@@ -1,6 +1,7 @@
 package com.jorgecruces.metrometro.logic;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -14,41 +15,32 @@ public class PickerStationsAlternative {
 
 
     /**
-     * Position Starts from 1 to len(stations)
+     * Return List of alternatives using the current position:
+     * - It returns 3 alternatives
+     * - It does not include the correct alternative
      *
      * @param stations
      * @param position
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public ArrayList<Station> getAlternatives(ArrayList<Station> stations, int position) {
 
-        ArrayList<Station> alternatives = new ArrayList<>();
-        ArrayList<Station> alternativesPickerList = new ArrayList<>();
+        ArrayList<Station> alternativesCleaned = this.cleanAlternatives(stations, position);
 
-        // Comenzamos desde una posicion + 2  a la alternativa correcta
-        int currentPosition = position + 2;
-        int counter = 4;
+        return alternativesCleaned;
+    }
 
-        for (int i = currentPosition; i < stations.size(); i++) {
-            for (int j = counter * 2; j >= 0; j--) {
-                alternativesPickerList.add(stations.get(i));
-            }
-            counter--;
-        }
+    private ArrayList<Station> cleanAlternatives(ArrayList<Station> stations, int position) {
 
-        Random random = new Random();
-        // Agregamos a la lista de alternativas las posibles alternativas
-        int sizeAlternatives = 3;
 
-        while (sizeAlternatives > 0) {
-            Station tempStation = alternativesPickerList.get(random.nextInt(alternativesPickerList.size()));
-            alternatives.add(tempStation);
-            alternativesPickerList.removeIf(station -> station.getName().equals(tempStation.getName()));
-            sizeAlternatives--;
-        }
+        ArrayList<Station> deepCopyStations = new ArrayList<>(stations);
 
-        return alternatives;
+        // We erase the current position
+        deepCopyStations.remove(position);
+        // and the next position
+        deepCopyStations.remove(position);
+
+        return deepCopyStations;
     }
 }
 

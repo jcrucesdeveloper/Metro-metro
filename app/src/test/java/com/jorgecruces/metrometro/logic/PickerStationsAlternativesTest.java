@@ -24,16 +24,16 @@ public class PickerStationsAlternativesTest {
 
         stations = new ArrayList<>();
         pickerStationsAlternative = new PickerStationsAlternative();
-        Station station1 = new Station("lo1"); // 1
-        Station station2 = new Station("lol2");
-        Station station3 = new Station("lol3");
-        Station station4 = new Station("lol4");
-        Station station5 = new Station("lol5");
-        Station station6 = new Station("lol6");
-        Station station7 = new Station("lol7");
-        Station station8 = new Station("lol8");
-        Station station9 = new Station("lol9");
-        Station station10 = new Station("lol10");
+        Station station1 = new Station("station1"); // 1
+        Station station2 = new Station("station2");
+        Station station3 = new Station("station3");
+        Station station4 = new Station("station4");
+        Station station5 = new Station("station5");
+        Station station6 = new Station("station6");
+        Station station7 = new Station("station7");
+        Station station8 = new Station("station8");
+        Station station9 = new Station("station9");
+        Station station10 = new Station("station10");
 
         stations.add(station1);
         stations.add(station2);
@@ -55,7 +55,7 @@ public class PickerStationsAlternativesTest {
             System.out.println(station.getName());
         }
 
-    }
+    }kkk
 
 
 }
