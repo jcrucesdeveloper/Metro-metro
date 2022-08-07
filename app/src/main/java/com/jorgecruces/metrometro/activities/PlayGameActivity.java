@@ -29,12 +29,14 @@ public class PlayGameActivity extends AppCompatActivity {
     private ArrayList<Station> alternatives;
     private int position;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
-        Bundle extra = getIntent().getExtras();
+        this.setLineName();
+        this.initializeLevelData();
+        this.initializeViewsData();
+
         position = 0;
         TextView title = findViewById(R.id.textViewTitle);
 
@@ -48,17 +50,43 @@ public class PlayGameActivity extends AppCompatActivity {
 
     }
 
-    private void initializeData(String lineName) {
+    private void initalizeActivity() {
+    }
+
+    /**
+     * Get the lineName from the Intent
+     */
+    private void setLineName() {
+        Bundle extra = getIntent().getExtras();
+        if (extra == null) {
+            Toast.makeText(this, "Hubo un problema", Toast.LENGTH_SHORT).show();
+            throw new Error("Hubo un problema al iniciar el level");
+        }
+        this.lineName = extra.getString("LINEA");
+    }
+
+    /**
+     * Initialize the level data
+     */
+    private void initializeLevelData() {
+        this.setLevelStations();
+
+    }
+
+    private void setLevelStations() {
         MetroReaderXML metroReaderXML = new MetroReaderXML(this);
         Metro metro = metroReaderXML.createMetro();
         ArrayList<Line> lines = metro.getLines();
         for (Line tempLine: lines) {
             if (tempLine.getName().equals(lineName)) {
-                this.line = tempLine;
-                break;
+                this.stations = tempLine.getStations();
+                return;
             }
         }
-        this.stations = this.line.getStations();
+        throw new Error("Algo fallo");
+    }
+
+    private void initializeData(String lineName) {
 
         // Set Level max Position
         TextView textViewMaxPosition = findViewById(R.id.textViewMaxPosition);
@@ -71,7 +99,6 @@ public class PlayGameActivity extends AppCompatActivity {
         currentStation.setText(this.stations.get(position).getName());
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setStationQuestion(int position) {
         this.setCurrentStation(position);
         this.setCorrectStation(position);
@@ -89,7 +116,6 @@ public class PlayGameActivity extends AppCompatActivity {
         currentPositionTextView.setText(currentPositionStr);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setAlternatives(int position) {
 
         PickerStationsAlternative pickerStationsAlternative = new PickerStationsAlternative();
@@ -105,7 +131,6 @@ public class PlayGameActivity extends AppCompatActivity {
         this.setOnClickListenerAlternatives(alternativesTextView);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public ArrayList<Station> getStationAlternatives(int position) {
 
         ArrayList<Station> stations = this.line.getStations();
@@ -120,7 +145,6 @@ public class PlayGameActivity extends AppCompatActivity {
         return stationAlternatives;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setOnClickListenerAlternatives(ArrayList<TextView> alternatives) {
         Station correctAlternative = this.stations.get(this.position + 1);
 
@@ -132,7 +156,6 @@ public class PlayGameActivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void checkAlternative(String alternativeString) {
 
         // Correct alternative
@@ -145,7 +168,6 @@ public class PlayGameActivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void onCorrectAlternative() {
         this.position = this.position + 1;
         this.setStationQuestion(this.position);

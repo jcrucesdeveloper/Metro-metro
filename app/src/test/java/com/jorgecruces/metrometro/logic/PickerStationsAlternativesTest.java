@@ -24,7 +24,7 @@ public class PickerStationsAlternativesTest {
 
         stations = new ArrayList<>();
         pickerStationsAlternative = new PickerStationsAlternative();
-        Station station1 = new Station("station1"); // 1
+        Station station1 = new Station("station1"); // 0
         Station station2 = new Station("station2");
         Station station3 = new Station("station3");
         Station station4 = new Station("station4");
@@ -50,12 +50,46 @@ public class PickerStationsAlternativesTest {
     @Test
     public void testPickerStationsAlternatives() {
 
-        ArrayList<Station> alternatives = pickerStationsAlternative.getAlternatives(stations, 1);
+        ArrayList<Station> alternatives = pickerStationsAlternative.getAlternatives(stations, 0);
         for(Station station: alternatives) {
             System.out.println(station.getName());
         }
 
-    }kkk
+    }
 
+    @Test
+    public void testCleanStations() {
+        ArrayList<Station> stationsCleaned = pickerStationsAlternative.cleanAlternatives(stations, 2);
+        for(Station station: stationsCleaned) {
+            System.out.println(station.getName());
+        }
+    }
+
+
+    @Test
+    public void testWeightStations() {
+        ArrayList<Station> stationsCleaned = pickerStationsAlternative.weightStations(stations, 1);
+        for(Station station: stationsCleaned) {
+            System.out.println(station.getName());
+        }
+    }
+
+    @Test
+    public void testPickAlternatives() {
+        ArrayList<Station> stationsCleaned = pickerStationsAlternative.pickAlternatives(stations);
+        for(Station station: stationsCleaned) {
+            System.out.println(station.getName());
+        }
+    }
+
+    @Test
+    public void testPickerAlternativesComplete() {
+        ArrayList<Station> alternatives = pickerStationsAlternative.getAlternatives(stations,0);
+
+        for(Station station: alternatives) {
+            System.out.println(station.getName());
+        }
+
+    }
 
 }
