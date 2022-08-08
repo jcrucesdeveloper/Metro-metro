@@ -1,19 +1,15 @@
 package com.jorgecruces.metrometro.activities;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jorgecruces.metrometro.R;
 import com.jorgecruces.metrometro.logic.MetroReaderXML;
-import com.jorgecruces.metrometro.logic.PickerStationsAlternative;
 import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
 import com.jorgecruces.metrometro.model.Station;
@@ -22,12 +18,17 @@ import java.util.ArrayList;
 
 public class PlayGameActivity extends AppCompatActivity {
 
+    // Static Level Data
     private String lineName;
-    private Line line;
     private ArrayList<Station> stations;
+    private int stationsSize;
+
+    // Non-Static Level Data
+    private int position;
+    private String currentStationName;
+    private String lastStationName;
     private Station correctStation;
     private ArrayList<Station> alternatives;
-    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,22 +36,7 @@ public class PlayGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_game);
         this.setLineName();
         this.initializeLevelData();
-        this.initializeViewsData();
-
-        position = 0;
-        TextView title = findViewById(R.id.textViewTitle);
-
-
-        if (extra != null) {
-            lineName = extra.getString("LINEA");
-            title.setText(lineName);
-            this.initializeData(lineName);
-            this.setStationQuestion(position);
-        }
-
-    }
-
-    private void initalizeActivity() {
+        this.initializeLevelViews();
     }
 
     /**
@@ -66,14 +52,31 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     /**
-     * Initialize the level data
+     * Initialize the level data:
+     * - Set stations list
+     * - Set position to 0
+     * - Set stations size
      */
     private void initializeLevelData() {
-        this.setLevelStations();
-
+        this.setStationList();
+        this.position = 0;
+        this.stationsSize = this.stations.size();
     }
 
-    private void setLevelStations() {
+    /**
+     * Initialize static level views:
+     * - LevelTitleTextView
+     * - StationSizeTextView
+     */
+    private void initializeLevelViews() {
+        TextView levelTitleTextView = findViewById(R.id.textViewTitle);
+        TextView stationSizeTextView = findViewById(R.id.textViewMaxPosition);
+
+        levelTitleTextView.setText(this.lineName);
+        stationSizeTextView.setText(String.valueOf(this.stationsSize));
+    }
+
+    private void setStationList() {
         MetroReaderXML metroReaderXML = new MetroReaderXML(this);
         Metro metro = metroReaderXML.createMetro();
         ArrayList<Line> lines = metro.getLines();
@@ -86,14 +89,6 @@ public class PlayGameActivity extends AppCompatActivity {
         throw new Error("Algo fallo");
     }
 
-    private void initializeData(String lineName) {
-
-        // Set Level max Position
-        TextView textViewMaxPosition = findViewById(R.id.textViewMaxPosition);
-        String maxPositionStr = String.valueOf(this.stations.size());
-        textViewMaxPosition.setText(maxPositionStr);
-    }
-
     private void setCurrentStation(int position) {
         TextView currentStation = findViewById(R.id.textViewCurrentStation);
         currentStation.setText(this.stations.get(position).getName());
@@ -103,7 +98,6 @@ public class PlayGameActivity extends AppCompatActivity {
         this.setCurrentStation(position);
         this.setCorrectStation(position);
         this.setPositionNumber(position);
-        this.setAlternatives(position);
     }
 
     private void setCorrectStation(int position) {
@@ -116,44 +110,15 @@ public class PlayGameActivity extends AppCompatActivity {
         currentPositionTextView.setText(currentPositionStr);
     }
 
-    private void setAlternatives(int position) {
-
-        PickerStationsAlternative pickerStationsAlternative = new PickerStationsAlternative();
-        alternatives = pickerStationsAlternative.getAlternatives(this.line.getStations(), position);
-
-        ArrayList<Station> stationAlternatives = this.getStationAlternatives(position);
-        ArrayList<TextView> alternativesTextView = this.getAlternativesTextView();
-
-        for (int i = 0; i < stationAlternatives.size(); i++) {
-            Station currentAlternative = stationAlternatives.get(i);
-            alternativesTextView.get(i).setText(currentAlternative.getName());
-        }
-        this.setOnClickListenerAlternatives(alternativesTextView);
+    private void setCurrentStationQuestion(int position) {
+        this.setCurrentStationData(position);
+        this.setCurrentStationViews();
     }
 
-    public ArrayList<Station> getStationAlternatives(int position) {
+    private void setCurrentStationData(int position) {
+        Station currentStation = this.stations.get(position);
+        this.currentStationName = currentStation.getName();
 
-        ArrayList<Station> stations = this.line.getStations();
-        Station correctAlternative = stations.get(position + 1);
-        Log.d("lol", correctAlternative.getName());
-
-
-        PickerStationsAlternative pickerStationsAlternative = new PickerStationsAlternative();
-        ArrayList<Station> stationAlternatives = pickerStationsAlternative.getAlternatives(stations, position);
-
-        stationAlternatives.add(correctAlternative);
-        return stationAlternatives;
-    }
-
-    private void setOnClickListenerAlternatives(ArrayList<TextView> alternatives) {
-        Station correctAlternative = this.stations.get(this.position + 1);
-
-        for (TextView alternative: alternatives) {
-            String lineName = alternative.getText().toString();
-            alternative.setOnClickListener(view -> {
-                this.checkAlternative(lineName);
-            });
-        }
     }
 
     private void checkAlternative(String alternativeString) {
