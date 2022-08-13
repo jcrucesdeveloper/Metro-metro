@@ -1,148 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".activities.PlayGameActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="64dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="331dp"
-        android:onClick="goBackToMenu"
-        android:contentDescription="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Lineas Metro"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewAlternative4"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="48dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewAlternative3"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAlternative2" />
-
-    <TextView
-        android:id="@+id/textViewAlternative3"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="12dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAlternative1" />
-
-    <TextView
-        android:id="@+id/textViewAlternative1"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="568dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="228dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCurrentStation">
+        tools:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_revert"
+            tools:layout_weight="0.3" />
 
         <TextView
-            android:id="@+id/textViewCurrentPosition"
+            android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="/"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/textViewMaxPosition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20"
-            android:textSize="24sp" />
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
+            android:lineSpacingExtra="8sp"
+            android:text="Linea Metro"
+            android:textAlignment="center"
+            android:textSize="34sp"
+            tools:layout_marginRight="30dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewAlternative2"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="568dp"
-        android:layout_marginEnd="48dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewAlternative1"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewCurrentStation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:text="CURRENT  LINEA"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="181dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCurrentStation">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textViewCurrentStation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="CURRENT LINEA" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:gravity="clip_vertical|center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="30dp"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewAlternative1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="2dp"
+                    android:background="@android:drawable/editbox_dropdown_light_frame"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="TEST"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textViewAlternative2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="2dp"
+                    android:background="@android:drawable/editbox_dropdown_light_frame"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="TEST"
+                    android:textAlignment="center" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textViewAlternative3"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="2dp"
+                    android:background="@android:drawable/editbox_dropdown_light_frame"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="TEST"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textViewAlternative4"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="2dp"
+                    android:background="@android:drawable/editbox_dropdown_light_frame"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="TEST"
+                    android:textAlignment="center" />
+
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>
