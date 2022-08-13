@@ -10,11 +10,13 @@ import android.widget.Toast;
 
 import com.jorgecruces.metrometro.R;
 import com.jorgecruces.metrometro.logic.MetroReaderXML;
+import com.jorgecruces.metrometro.logic.PickerStationsAlternative;
 import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
 import com.jorgecruces.metrometro.model.Station;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PlayGameActivity extends AppCompatActivity {
 
@@ -27,7 +29,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private int position;
     private String currentStationName;
     private String lastStationName;
-    private Station correctStation;
+    private Station correctAlternative;
     private ArrayList<Station> alternatives;
 
     @Override
@@ -37,6 +39,8 @@ public class PlayGameActivity extends AppCompatActivity {
         this.setLineName();
         this.initializeLevelData();
         this.initializeLevelViews();
+
+        this.setCurrentStationQuestion(this.position);
     }
 
     /**
@@ -89,57 +93,35 @@ public class PlayGameActivity extends AppCompatActivity {
         throw new Error("Algo fallo");
     }
 
-    private void setCurrentStation(int position) {
-        TextView currentStation = findViewById(R.id.textViewCurrentStation);
-        currentStation.setText(this.stations.get(position).getName());
-    }
-
-    private void setStationQuestion(int position) {
-        this.setCurrentStation(position);
-        this.setCorrectStation(position);
-        this.setPositionNumber(position);
-    }
-
-    private void setCorrectStation(int position) {
-        this.correctStation = this.stations.get(position + 1);
-    }
-
-    private void setPositionNumber(int position) {
-        TextView currentPositionTextView = findViewById(R.id.textViewCurrentPosition);
-        String currentPositionStr = String.valueOf(position);
-        currentPositionTextView.setText(currentPositionStr);
-    }
-
+    /**
+     * This method set the current Station Question:
+     * - Set current Station Data and View
+     * - Set current Alternatives Data and Views
+     * @param position position to set the data
+     */
     private void setCurrentStationQuestion(int position) {
+        // Current station
         this.setCurrentStationData(position);
-        this.setCurrentStationViews();
+        this.setCurrentStationView();
+
+        // Alternatives
+        this.setCurrentAlternativesData(position);
+        this.setCurrentAlternativesViews();
     }
 
-    private void setCurrentStationData(int position) {
-        Station currentStation = this.stations.get(position);
-        this.currentStationName = currentStation.getName();
+    private void setCurrentAlternativesData(int position) {
+        // Set correct alternativeData
+        this.correctAlternative = this.stations.get(position + 1);
+        // Set alternatives data
+        PickerStationsAlternative pickerStationsAlternative = new PickerStationsAlternative();
 
+        ArrayList<Station> alternatives = pickerStationsAlternative.getAlternatives(this.stations, position);
+        alternatives.add(this.correctAlternative);
+
+        this.alternatives = alternatives;
     }
 
-    private void checkAlternative(String alternativeString) {
-
-        // Correct alternative
-        if (alternativeString.equals(this.correctStation.getName())) {
-            this.onCorrectAlternative();
-        } else {
-            // Incorrect alternative
-            Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show();
-
-        }
-    }
-
-    private void onCorrectAlternative() {
-        this.position = this.position + 1;
-        this.setStationQuestion(this.position);
-    }
-
-
-    public ArrayList<TextView> getAlternativesTextView() {
+    private void setCurrentAlternativesViews() {
 
         ArrayList<TextView> alternativesTextView = new ArrayList<>();
 
@@ -152,9 +134,44 @@ public class PlayGameActivity extends AppCompatActivity {
         alternativesTextView.add(textViewAlternative2);
         alternativesTextView.add(textViewAlternative3);
         alternativesTextView.add(textViewAlternative4);
+        // Shuffle!!!
+        Collections.shuffle(alternativesTextView);
 
-        return alternativesTextView;
+        for (int i = 0; i < alternativesTextView.size(); i++) {
+            TextView currentTextView = alternativesTextView.get(i);
+            Station currentStation = this.alternatives.get(i);
+            currentTextView.setText(currentStation.getName());
+        }
     }
+
+
+    private void setCurrentStationView() {
+        TextView currentStationView = findViewById(R.id.textViewCurrentStation);
+        currentStationView.setText(this.currentStationName);
+    }
+
+    private void setCurrentStationData(int position) {
+        Station currentStation = this.stations.get(position);
+        this.currentStationName = currentStation.getName();
+    }
+
+    private void checkAlternative(String alternativeString) {
+
+        // Correct alternative
+        if (alternativeString.equals(this.correctAlternative.getName())) {
+            this.onCorrectAlternative();
+        } else {
+            // Incorrect alternative
+            Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void onCorrectAlternative() {
+        this.position = this.position + 1;
+//        this.setStationQuestion(this.position);
+    }
+
 
     public void goBackToMenu(View view) {
         Intent intent = new Intent(this, MenuMetroActivity.class);
