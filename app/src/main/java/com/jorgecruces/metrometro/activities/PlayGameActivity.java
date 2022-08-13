@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -100,6 +101,9 @@ public class PlayGameActivity extends AppCompatActivity {
      * @param position position to set the data
      */
     private void setCurrentStationQuestion(int position) {
+        // Number Question
+        this.setCurrentNumberStationView(position + 1);
+
         // Current station
         this.setCurrentStationData(position);
         this.setCurrentStationView();
@@ -107,6 +111,11 @@ public class PlayGameActivity extends AppCompatActivity {
         // Alternatives
         this.setCurrentAlternativesData(position);
         this.setCurrentAlternativesViews();
+    }
+
+    private void setCurrentNumberStationView(int position) {
+        TextView textViewCurrentNumberQuestion = findViewById(R.id.textViewCurrentNumberQuestion);
+        textViewCurrentNumberQuestion.setText(String.valueOf(position));
     }
 
     private void setCurrentAlternativesData(int position) {
@@ -134,14 +143,24 @@ public class PlayGameActivity extends AppCompatActivity {
         alternativesTextView.add(textViewAlternative2);
         alternativesTextView.add(textViewAlternative3);
         alternativesTextView.add(textViewAlternative4);
+
+
         // Shuffle!!!
         Collections.shuffle(alternativesTextView);
 
+        // Set Text Alternatives
         for (int i = 0; i < alternativesTextView.size(); i++) {
             TextView currentTextView = alternativesTextView.get(i);
             Station currentStation = this.alternatives.get(i);
             currentTextView.setText(currentStation.getName());
         }
+
+        // OnClickListener
+        for (TextView textView: alternativesTextView) {
+            String lineName = textView.getText().toString();
+            textView.setOnClickListener(view -> this.checkAlternative(lineName));
+        }
+
     }
 
 
@@ -157,21 +176,26 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void checkAlternative(String alternativeString) {
 
-        // Correct alternative
         if (alternativeString.equals(this.correctAlternative.getName())) {
+            // Correct Alternative
             this.onCorrectAlternative();
         } else {
-            // Incorrect alternative
-            Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show();
+            // Incorrect Alternative
+            this.onIncorrectAlternative();
 
         }
     }
 
     private void onCorrectAlternative() {
         this.position = this.position + 1;
-//        this.setStationQuestion(this.position);
+        if (this.position < (this.stations.size() - 1)) {
+            this.setCurrentStationQuestion(this.position);
+        }
     }
 
+    private void onIncorrectAlternative() {
+        Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show();
+    }
 
     public void goBackToMenu(View view) {
         Intent intent = new Intent(this, MenuMetroActivity.class);
