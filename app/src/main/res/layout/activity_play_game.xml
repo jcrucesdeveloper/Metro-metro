@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.PlayGameActivity">
@@ -14,17 +15,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="331dp"
-        android:onClick="goBackToMenu"
         android:contentDescription="Button"
+        android:onClick="goBackToMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="218dp"
+        android:layout_height="59dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-light"
         android:text="Lineas Metro"
@@ -71,16 +73,19 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewAlternative3"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="181dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCurrentStation">
+        app:layout_constraintTop_toBottomOf="@+id/gameLayout">
 
         <TextView
             android:id="@+id/textViewCurrentNumberQuestion"
@@ -119,28 +124,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textViewAlternative1" />
 
-    <TextView
-        android:id="@+id/textViewCurrentStation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:text="CURRENT  LINEA"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="181dp"
+        android:id="@+id/gameLayout"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/edit_text"
+        android:gravity="clip_horizontal|clip_vertical|center_horizontal|center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCurrentStation">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+
+        >
 
     </LinearLayout>
 

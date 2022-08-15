@@ -1,15 +1,21 @@
 package com.jorgecruces.metrometro.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jorgecruces.metrometro.R;
+import com.jorgecruces.metrometro.customViews.StationView;
 import com.jorgecruces.metrometro.logic.MetroReaderXML;
 import com.jorgecruces.metrometro.logic.PickerStationsAlternative;
 import com.jorgecruces.metrometro.model.Line;
@@ -40,8 +46,37 @@ public class PlayGameActivity extends AppCompatActivity {
         this.setLineName();
         this.initializeLevelData();
         this.initializeLevelViews();
-
         this.setCurrentStationQuestion(this.position);
+        this.testMethod();
+    }
+
+    private void testMethod() {
+        LinearLayout linearLayout = findViewById(R.id.gameLayout);
+        StationView stationView = new StationView(this);
+        stationView.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+                ));
+        linearLayout.addView(stationView);
+
+
+        StationView stationView2 = new StationView(this);
+        stationView2.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        ));
+        linearLayout.addView(stationView2);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
+//        ObjectAnimator animation = ObjectAnimator.ofFloat(stationView, "translationX", -(width/2));
+//        animation.setDuration(3000);
+//        animation.start();
+
+
     }
 
     /**
@@ -165,8 +200,8 @@ public class PlayGameActivity extends AppCompatActivity {
 
 
     private void setCurrentStationView() {
-        TextView currentStationView = findViewById(R.id.textViewCurrentStation);
-        currentStationView.setText(this.currentStationName);
+//        TextView currentStationView = findViewById(R.id.textViewCurrentStation);
+//        currentStationView.setText(this.currentStationName);
     }
 
     private void setCurrentStationData(int position) {
