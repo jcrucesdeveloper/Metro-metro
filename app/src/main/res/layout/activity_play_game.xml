@@ -35,6 +35,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <TextView
+        android:id="@+id/textViewAlternative2"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="124dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="SAN PEDRO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAlternative1"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="124dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="SAN PEDRO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toEndOf="@+id/textViewAlternative3" />
+
     <TextView
         android:id="@+id/textViewAlternative4"
         android:layout_width="150dp"
@@ -61,31 +89,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewAlternative1"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="24dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative1"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainScrollView">
 
         <TextView
             android:id="@+id/textViewCurrentNumberQuestion"
@@ -109,22 +125,8 @@
             android:textSize="24sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewAlternative2"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewAlternative1" />
-
     <HorizontalScrollView
+        android:id="@+id/mainScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -136,7 +138,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/gameLayout"

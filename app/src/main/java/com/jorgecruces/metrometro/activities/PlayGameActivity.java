@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,8 +12,10 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +45,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private String lastStationName;
     private Station correctAlternative;
     private ArrayList<Station> alternatives;
+    private ArrayList<StationView> stationViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,56 +55,42 @@ public class PlayGameActivity extends AppCompatActivity {
         this.initializeLevelData();
         this.initializeLevelViews();
         this.setCurrentStationQuestion(this.position);
-        this.testMethod();
+        this.drawStationView(150);
     }
 
-    private void testMethod() {
-        RelativeLayout linearLayout = findViewById(R.id.gameLayout);
-        TextView textView = new TextView(this);
-        textView.setText("HOLa");
-        textView.setId(View.generateViewId());
-        linearLayout.addView(textView);
-
+    private void drawStationView(float marginStart) {
+        RelativeLayout gameLayout = findViewById(R.id.gameLayout);
+        // Layout Params
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
-        Resources r = this.getResources();
-        int px = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                285,
-                r.getDisplayMetrics()
-        );
+        // Margin Start
+        layoutParams.setMarginStart(this.transformDpToPixel(marginStart));
 
-        layoutParams.setMarginStart(px);
-
+        // Add Station View to GameLayout
         StationView stationView = new StationView(this);
         stationView.setLayoutParams(layoutParams);
-        linearLayout.addView(stationView);
-
-
-        StationView stationView2 = new StationView(this);
-        stationView2.setId(View.generateViewId());
-
-        RelativeLayout.LayoutParams layoutParams2 = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
-        layoutParams2.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-
-        stationView2.setLayoutParams(layoutParams2);
-        linearLayout.addView(stationView2);
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-
-        stationView.animate().translationX(-1000f).setDuration(3000);
-
+        stationViews.add(stationView);
+        gameLayout.addView(stationView);
     }
+
+    /**
+     * Transform Dp value to pixel
+     * @param valueDp dp value that is going to be transformed to pixel
+     * @return Pixel value
+     */
+    private int transformDpToPixel(float valueDp) {
+        Resources r = this.getResources();
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                valueDp,
+                r.getDisplayMetrics()
+        );
+    }
+
 
     /**
      * Get the lineName from the Intent
@@ -124,6 +114,7 @@ public class PlayGameActivity extends AppCompatActivity {
         this.setStationList();
         this.position = 0;
         this.stationsSize = this.stations.size();
+        this.stationViews = new ArrayList<>();
     }
 
     /**
@@ -169,8 +160,30 @@ public class PlayGameActivity extends AppCompatActivity {
         // Alternatives
         this.setCurrentAlternativesData(position);
         this.setCurrentAlternativesViews();
+
+        // StationView
+        this.setStationView(position);
     }
 
+    private void scrollView() {
+        HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.mainScrollView);
+        int max = 2000;
+        scrollView.smoothScrollBy(scrollView.getBottom(),200);
+    }
+
+    private void setStationView(int position) {
+        if (position == 0) {return;}
+        float margin = this.calculateMargin(position);
+        this.drawStationView(margin);
+        this.scrollView();
+    }
+
+    private float calculateMargin(int position) {
+        float margin = 120;
+        float sizeStation = 300;
+        float offset = 10 * position;
+        return margin + (sizeStation * position) - offset;
+    }
     private void setCurrentNumberStationView(int position) {
         TextView textViewCurrentNumberQuestion = findViewById(R.id.textViewCurrentNumberQuestion);
         textViewCurrentNumberQuestion.setText(String.valueOf(position));
@@ -242,6 +255,13 @@ public class PlayGameActivity extends AppCompatActivity {
             this.onIncorrectAlternative();
 
         }
+    }
+
+    private float calculatePosition() {
+        float margin = transformDpToPixel(150);
+        float currentStations = this.stationViews.size() + 1;
+        float offset = 10;
+        return margin + currentStations - offset;
     }
 
     private void onCorrectAlternative() {
