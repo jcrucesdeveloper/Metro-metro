@@ -36,6 +36,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     // Static Level Data
     private String lineName;
+    private String lineColorHex;
     private ArrayList<Station> stations;
     private int stationsSize;
 
@@ -55,10 +56,10 @@ public class PlayGameActivity extends AppCompatActivity {
         this.initializeLevelData();
         this.initializeLevelViews();
         this.setCurrentStationQuestion(this.position);
-        this.drawStationView(150);
+        this.drawStationView(150, this.currentStationName, this.lineColorHex);
     }
 
-    private void drawStationView(float marginStart) {
+    private void drawStationView(float marginStart, String stationName, String colorHex) {
         RelativeLayout gameLayout = findViewById(R.id.gameLayout);
         // Layout Params
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
@@ -72,7 +73,10 @@ public class PlayGameActivity extends AppCompatActivity {
 
         // Add Station View to GameLayout
         StationView stationView = new StationView(this);
+        stationView.setLineName(stationName);
+        stationView.setColor(colorHex);
         stationView.setLayoutParams(layoutParams);
+
         stationViews.add(stationView);
         gameLayout.addView(stationView);
     }
@@ -137,6 +141,8 @@ public class PlayGameActivity extends AppCompatActivity {
         for (Line tempLine: lines) {
             if (tempLine.getName().equals(lineName)) {
                 this.stations = tempLine.getStations();
+                // TODO - Check this
+                this.lineColorHex = tempLine.getColor();
                 return;
             }
         }
@@ -179,7 +185,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private void setStationView(int position) {
         if (position == 0) {return;}
         float margin = this.calculateMargin(position);
-        this.drawStationView(margin);
+        this.drawStationView(margin, this.currentStationName, this.lineColorHex);
         this.scrollView();
     }
 
