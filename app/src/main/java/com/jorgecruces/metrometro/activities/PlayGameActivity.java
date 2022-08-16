@@ -167,8 +167,13 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void scrollView() {
         HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.mainScrollView);
-        int max = 2000;
-        scrollView.smoothScrollBy(scrollView.getBottom(),200);
+        scrollView.setSmoothScrollingEnabled(true);
+        scrollView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+        }, 100);
     }
 
     private void setStationView(int position) {
