@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal|center_vertical"
+    android:layout_centerVertical="true"
+    android:animateLayoutChanges="true"
+    android:gravity="start|center_horizontal|center_vertical"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -12,27 +15,43 @@
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
+            android:id="@+id/imageView8"
+            android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_centerInParent="true"
-            android:backgroundTint="#FF0000"
+            android:layout_marginStart="-10dp"
             app:srcCompat="@drawable/metro_svg" />
 
         <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
+            android:id="@+id/imageView9"
+            android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_centerInParent="true"
-            app:srcCompat="@drawable/ic_baseline_circle_24" />
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            app:srcCompat="@drawable/ic_baseline_circle_24"
+            tools:layout_centerVertical="true" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="120dp"
+            android:layout_height="42dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/imageView9"
+            android:adjustViewBounds="false"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_mediamodifier_design_5_" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/textViewStationName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_weight="1"
         android:text="TextView"
-        android:textAlignment="center" />
+        android:textAlignment="viewStart" />
 
 </LinearLayout>

@@ -5,12 +5,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ import com.jorgecruces.metrometro.logic.PickerStationsAlternative;
 import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
 import com.jorgecruces.metrometro.model.Station;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,20 +55,42 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void testMethod() {
-        LinearLayout linearLayout = findViewById(R.id.gameLayout);
+        RelativeLayout linearLayout = findViewById(R.id.gameLayout);
+        TextView textView = new TextView(this);
+        textView.setText("HOLa");
+        textView.setId(View.generateViewId());
+        linearLayout.addView(textView);
+
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+
+        Resources r = this.getResources();
+        int px = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                285,
+                r.getDisplayMetrics()
+        );
+
+        layoutParams.setMarginStart(px);
+
         StationView stationView = new StationView(this);
-        stationView.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-                ));
+        stationView.setLayoutParams(layoutParams);
         linearLayout.addView(stationView);
 
 
         StationView stationView2 = new StationView(this);
-        stationView2.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-        ));
+        stationView2.setId(View.generateViewId());
+
+        RelativeLayout.LayoutParams layoutParams2 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams2.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+
+        stationView2.setLayoutParams(layoutParams2);
         linearLayout.addView(stationView2);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -72,10 +98,7 @@ public class PlayGameActivity extends AppCompatActivity {
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
 
-//        ObjectAnimator animation = ObjectAnimator.ofFloat(stationView, "translationX", -(width/2));
-//        animation.setDuration(3000);
-//        animation.start();
-
+        stationView.animate().translationX(-1000f).setDuration(3000);
 
     }
 
