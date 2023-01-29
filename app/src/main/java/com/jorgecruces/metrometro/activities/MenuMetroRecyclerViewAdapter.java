@@ -3,8 +3,10 @@ package com.jorgecruces.metrometro.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,14 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
             intent.putExtra("LINEA", lineaName);
             this.context.startActivity(intent);
         });
+
+        // Star Level
+        SharedPreferences settings = this.context.getSharedPreferences("METRO",0);
+        boolean starLevel = settings.getBoolean(lineaName,false);
+        if (starLevel) {
+            holder.starView.setImageResource(R.drawable.ic_mediamodifier_design_2_);
+        }
+
     }
 
     @Override
@@ -63,13 +73,14 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // On createMethod
         TextView lineaMetroName;
-        ImageView backgroundMetroMenu;
+        ImageView backgroundMetroMenu, starView;
         CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             lineaMetroName = itemView.findViewById(R.id.lineaName);
             backgroundMetroMenu = itemView.findViewById(R.id.backgroundMetroMenu);
             cardView = itemView.findViewById(R.id.cardViewMenu);
+            starView = itemView.findViewById(R.id.starView);
         }
     }
 }
