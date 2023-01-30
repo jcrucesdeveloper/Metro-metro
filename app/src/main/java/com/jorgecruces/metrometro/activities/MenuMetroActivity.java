@@ -5,10 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -49,14 +49,21 @@ public class MenuMetroActivity extends AppCompatActivity {
         ArrayList<Line> lines = metro.getLines();
         for (Line line : lines ) {
             MetroMenu item = new MetroMenu(line.getName(),line.getColor());
-            item.setLevelStar(true);
+            boolean levelStar = this.getLevelStarSharedPreferences(line.getName());
+            item.setLevelStar(levelStar);
             metroMenu.add(item);
         }
         // Score Star
-        SharedPreferences settings = getApplicationContext().getSharedPreferences("METRO", 0);
-        int scoreStar = settings.getInt("score", 0);
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        int scoreStar = sharedPref.getInt("score", 0);
+
         String scoreString = Integer.toString(scoreStar);
         this.scoreStarView.setText(scoreString);
+    }
+
+    private boolean getLevelStarSharedPreferences(String lineName) {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        return sharedPref.getBoolean(lineName,false);
     }
 
     public void goBackMainActivity(View view) {

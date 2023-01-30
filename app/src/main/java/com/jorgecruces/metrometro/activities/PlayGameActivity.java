@@ -5,13 +5,17 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -161,7 +165,6 @@ public class PlayGameActivity extends AppCompatActivity {
 
         // Current station
         this.setCurrentStationData(position);
-        this.setCurrentStationView();
 
         // Alternatives
         this.setCurrentAlternativesData(position);
@@ -245,12 +248,6 @@ public class PlayGameActivity extends AppCompatActivity {
 
     }
 
-
-    private void setCurrentStationView() {
-//        TextView currentStationView = findViewById(R.id.textViewCurrentStation);
-//        currentStationView.setText(this.currentStationName);
-    }
-
     private void setCurrentStationData(int position) {
         Station currentStation = this.stations.get(position);
         this.currentStationName = currentStation.getName();
@@ -268,22 +265,45 @@ public class PlayGameActivity extends AppCompatActivity {
         }
     }
 
-    private float calculatePosition() {
-        float margin = transformDpToPixel(150);
-        float currentStations = this.stationViews.size() + 1;
-        float offset = 10;
-        return margin + currentStations - offset;
-    }
-
     private void onCorrectAlternative() {
         this.position = this.position + 1;
         if (this.position < (this.stations.size() - 1)) {
             this.setCurrentStationQuestion(this.position);
+        } else {
+            this.onWinLevel();
         }
+    }
+
+    public void onWinLevel() {
+        this.updateProgressInfo();
+        this.showWinningDialog();
+    }
+
+    private void updateProgressInfo() {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(this.lineName,true);
+        editor.commit();
+    }
+
+    private void showWinningDialog() {
+        // Show dialog
+        Dialog winningDialog = new Dialog(this);
+        winningDialog.setContentView(R.layout.winning_dialog);
+
+        // Button
+        Button winningButton = (Button) winningDialog.findViewById(R.id.winningButton);
+
+        winningButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MenuMetroActivity.class);
+            startActivity(intent);
+        });
+        winningDialog.show();
     }
 
     private void onIncorrectAlternative() {
         Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show();
+        //TODO - add ads
     }
 
     public void goBackToMenu(View view) {

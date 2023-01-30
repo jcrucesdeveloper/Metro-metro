@@ -3,8 +3,6 @@ package com.jorgecruces.metrometro.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -26,11 +23,11 @@ import java.util.ArrayList;
 public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetroRecyclerViewAdapter.MyViewHolder> {
 
     private final Context context;
-    private final ArrayList<MetroMenu> metroMenu;
+    private final ArrayList<MetroMenu> metroMenuList;
 
-    public MenuMetroRecyclerViewAdapter(Context context, ArrayList<MetroMenu> metroMenu) {
+    public MenuMetroRecyclerViewAdapter(Context context, ArrayList<MetroMenu> metroMenuList) {
         this.context = context;
-        this.metroMenu = metroMenu;
+        this.metroMenuList = metroMenuList;
     }
 
     @NonNull
@@ -44,22 +41,24 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
     @Override
     public void onBindViewHolder(@NonNull MenuMetroRecyclerViewAdapter.MyViewHolder holder, int position) {
 
-        String lineaName = metroMenu.get(position).getMetroName();
-        holder.lineaMetroName.setText(lineaName);
+        MetroMenu currentMetroMenu = metroMenuList.get(position);
 
-        int color = Color.parseColor(metroMenu.get(position).getColor());
+        String lineName = currentMetroMenu.getMetroName();
+        int color = Color.parseColor(currentMetroMenu.getColor());
+
+        holder.lineaMetroName.setText(lineName);
         holder.backgroundMetroMenu.setColorFilter(color);
-
         holder.cardView.setOnClickListener(view -> {
             Intent intent = new Intent(this.context.getApplicationContext(), PlayGameActivity.class);
-            intent.putExtra("LINEA", lineaName);
+            intent.putExtra("LINEA", lineName);
             this.context.startActivity(intent);
         });
 
         // Star Level
-        SharedPreferences settings = this.context.getSharedPreferences("METRO",0);
-        boolean starLevel = settings.getBoolean(lineaName,false);
-        if (starLevel) {
+        Log.d("DEBUG", lineName);
+//        SharedPreferences sharedPref = context.getApplicationContext().etActgetPreferences(Context.MODE_PRIVATE);
+//        boolean starLevel = sharedPref.getBoolean(lineaName,false);
+        if (currentMetroMenu.getLevelStar()) {
             holder.starView.setImageResource(R.drawable.ic_mediamodifier_design_2_);
         }
 
@@ -67,7 +66,7 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
 
     @Override
     public int getItemCount() {
-        return metroMenu.size();
+        return metroMenuList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

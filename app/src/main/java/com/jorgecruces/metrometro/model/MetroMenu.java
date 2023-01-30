@@ -22,4 +22,8 @@ public class MetroMenu {
     public String getColor() {
         return color;
     }
+
+    public boolean getLevelStar() {
+        return levelStar;
+    }
 }
