@@ -133,5 +133,11 @@
         <station>Lo valledor</station>
         <station>Cerrillos</station>
     </line>
+    <line name="TEST" color="#A53CEB">
+        <station>Los Leones</station>
+        <station>Cerrillos</station>
+        <station>Cerrillos</station>
+        <station>Cerrillos</station>
+    </line>
 
 </metro>

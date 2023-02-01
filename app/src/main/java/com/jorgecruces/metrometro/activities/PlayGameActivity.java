@@ -47,7 +47,6 @@ public class PlayGameActivity extends AppCompatActivity {
     // Non-Static Level Data
     private int position;
     private String currentStationName;
-    private String lastStationName;
     private Station correctAlternative;
     private ArrayList<Station> alternatives;
     private ArrayList<StationView> stationViews;
@@ -280,9 +279,20 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void updateProgressInfo() {
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                String.valueOf(R.string.app_name),Context.MODE_PRIVATE);
+
         SharedPreferences.Editor editor = sharedPref.edit();
+        int lastScore = sharedPref.getInt("score", 0);
+
+        // Score
+        if (lastScore < 6) {
+            editor.putInt("score",lastScore + 1);
+        }
+        // Star
         editor.putBoolean(this.lineName,true);
+
         editor.commit();
     }
 

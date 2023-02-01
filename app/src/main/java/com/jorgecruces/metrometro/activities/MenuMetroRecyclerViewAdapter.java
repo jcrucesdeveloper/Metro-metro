@@ -3,6 +3,7 @@ package com.jorgecruces.metrometro.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
     @Override
     public void onBindViewHolder(@NonNull MenuMetroRecyclerViewAdapter.MyViewHolder holder, int position) {
 
+        Log.d("TEST", "test");
         MetroMenu currentMetroMenu = metroMenuList.get(position);
 
         String lineName = currentMetroMenu.getMetroName();
@@ -55,13 +57,11 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
         });
 
         // Star Level
-        Log.d("DEBUG", lineName);
-//        SharedPreferences sharedPref = context.getApplicationContext().etActgetPreferences(Context.MODE_PRIVATE);
-//        boolean starLevel = sharedPref.getBoolean(lineaName,false);
-        if (currentMetroMenu.getLevelStar()) {
+        SharedPreferences sharedPref = this.context.getSharedPreferences(
+                String.valueOf(R.string.app_name),Context.MODE_PRIVATE);
+        if (sharedPref.getBoolean(lineName, false)) {
             holder.starView.setImageResource(R.drawable.ic_mediamodifier_design_2_);
         }
-
     }
 
     @Override

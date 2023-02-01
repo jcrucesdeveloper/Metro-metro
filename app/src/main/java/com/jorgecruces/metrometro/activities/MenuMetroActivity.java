@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -34,12 +35,16 @@ public class MenuMetroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_metro);
         scoreStarView = findViewById(R.id.scoreStarView);
 
-        this.initializeMetroMenuData();
+    }
 
+    @Override
+    protected void onResume() {
+        this.initializeMetroMenuData();
         RecyclerView recyclerView = findViewById(R.id.menuMetroRecyclerView);
         MenuMetroRecyclerViewAdapter adapter = new MenuMetroRecyclerViewAdapter(this,this.metroMenu);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        super.onResume();
     }
 
     public void initializeMetroMenuData() {
@@ -49,12 +54,15 @@ public class MenuMetroActivity extends AppCompatActivity {
         ArrayList<Line> lines = metro.getLines();
         for (Line line : lines ) {
             MetroMenu item = new MetroMenu(line.getName(),line.getColor());
-            boolean levelStar = this.getLevelStarSharedPreferences(line.getName());
+            boolean levelStar = this.getLevelStarSharedPreferences("Prueba");
             item.setLevelStar(levelStar);
             metroMenu.add(item);
         }
+
         // Score Star
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                String.valueOf(R.string.app_name),Context.MODE_PRIVATE);
+
         int scoreStar = sharedPref.getInt("score", 0);
 
         String scoreString = Integer.toString(scoreStar);
@@ -62,7 +70,8 @@ public class MenuMetroActivity extends AppCompatActivity {
     }
 
     private boolean getLevelStarSharedPreferences(String lineName) {
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                String.valueOf(R.string.app_name),Context.MODE_PRIVATE);
         return sharedPref.getBoolean(lineName,false);
     }
 

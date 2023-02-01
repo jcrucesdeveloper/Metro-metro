@@ -1,8 +1,11 @@
 package com.jorgecruces.metrometro.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,5 +26,12 @@ public class MainActivity extends AppCompatActivity {
     public void goNextActivity(View view) {
         Intent intent = new Intent(this, MenuMetroActivity.class);
         startActivity(intent);
+    }
+
+    public void resetButton(View view) {
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                String.valueOf(R.string.app_name), Context.MODE_PRIVATE);
+        sharedPref.edit().clear().commit();
+        Toast.makeText(this, "SharedPref Reset", Toast.LENGTH_SHORT).show();
     }
 }
