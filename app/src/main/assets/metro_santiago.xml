@@ -14,12 +14,19 @@
         <station number="10">La Moneda</station>
         <station number="10">Universidad de Chile</station>
         <station number="10">Santa Lucia</station>
-        <station number="10">Univerisdad de Catolica</station>
+        <station number="10">Universidad Catolica</station>
         <station number="10">Baquedano</station>
         <station number="10">Salvador</station>
         <station number="10">Manuel Montt</station>
         <station number="10">Pedro de Valdivia</station>
         <station number="10">Los Leones</station>
+        <station number="10">Tobalaba</station>
+        <station number="10">El Golf</station>
+        <station number="10">Alcantara</station>
+        <station number="10">Escuela Militar</station>
+        <station number="10">Manquehue</station>
+        <station number="10">Hernando de Magallanes</station>
+        <station number="10">Los Dominicos</station>
     </line>
     <line name="Linea 2" color="#FFD64B">
         <station>Vespucio Norte</station>
