@@ -22,12 +22,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void goNextActivity(View view) {
+    public void goToLinesMenuActivity(View view) {
         Intent intent = new Intent(this, MenuMetroActivity.class);
         startActivity(intent);
     }
 
-    public void resetButton(View view) {
+    public void resetSharedPreferences(View view) {
+        // TODO - Add a prompt before deleting
         SharedPreferences sharedPref = this.getSharedPreferences(
                 String.valueOf(R.string.app_name), Context.MODE_PRIVATE);
         sharedPref.edit().clear().commit();
