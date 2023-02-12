@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/lines_metro_background"
     tools:context=".activities.MenuMetroActivity">
 
     <ImageView
@@ -49,33 +50,22 @@
 
     <TextView
         android:id="@+id/scoreStarView"
-        android:layout_width="35dp"
-        android:layout_height="49dp"
+        android:layout_width="80dp"
+        android:layout_height="73dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="27dp"
-        android:fontFamily="sans-serif-light"
+        android:background="@drawable/lines_metro_star"
+        android:elevation="3dp"
+        android:fontFamily="@font/titiliumweb_bold"
+        android:gravity="center_horizontal|center_vertical"
         android:text="0"
         android:textAlignment="center"
-        android:textSize="38sp"
+        android:textColor="#000000"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/menuMetroRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="63dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/menuMetroRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toEndOf="@+id/textViewAlternative2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
 </androidx.constraintlayout.widget.ConstraintLayout>
