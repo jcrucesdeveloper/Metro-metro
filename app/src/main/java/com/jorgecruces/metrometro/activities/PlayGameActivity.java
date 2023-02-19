@@ -284,16 +284,17 @@ public class PlayGameActivity extends AppCompatActivity {
                 String.valueOf(R.string.app_name),Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPref.edit();
-        int lastScore = sharedPref.getInt("score", 0);
-
-        // Score
-        if (lastScore < 6) {
-            editor.putInt("score",lastScore + 1);
+        // Check if we have updated this level before
+        if(!sharedPref.getBoolean(lineName, false)) {
+            int lastScore = sharedPref.getInt("score", 0);
+            // Score
+            if (lastScore < 6) {
+                editor.putInt("score",lastScore + 1);
+            }
+            // Star
+            editor.putBoolean(this.lineName,true);
+            editor.commit();
         }
-        // Star
-        editor.putBoolean(this.lineName,true);
-
-        editor.commit();
     }
 
     private void showWinningDialog() {
