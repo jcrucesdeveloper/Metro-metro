@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jorgecruces.metrometro.R;
@@ -50,7 +51,7 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
 
         holder.lineaMetroName.setText(lineName);
         holder.backgroundMetroMenu.setColorFilter(color);
-        holder.cardView.setOnClickListener(view -> {
+        holder.constraintLayoutContainer.setOnClickListener(view -> {
             Intent intent = new Intent(this.context.getApplicationContext(), PlayGameActivity.class);
             intent.putExtra("LINEA", lineName);
             this.context.startActivity(intent);
@@ -60,7 +61,7 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
         SharedPreferences sharedPref = this.context.getSharedPreferences(
                 String.valueOf(R.string.app_name),Context.MODE_PRIVATE);
         if (sharedPref.getBoolean(lineName, false)) {
-            holder.starView.setImageResource(R.drawable.ic_mediamodifier_design_2_);
+            holder.starView.setImageTintList(null);
         }
     }
 
@@ -73,12 +74,13 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
         // On createMethod
         TextView lineaMetroName;
         ImageView backgroundMetroMenu, starView;
-        CardView cardView;
+        ConstraintLayout constraintLayoutContainer;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             lineaMetroName = itemView.findViewById(R.id.lineaName);
             backgroundMetroMenu = itemView.findViewById(R.id.backgroundMetroMenu);
-            cardView = itemView.findViewById(R.id.cardViewMenu);
+            constraintLayoutContainer = itemView.findViewById(R.id.contraintLayoutViewContainer);
+
             starView = itemView.findViewById(R.id.starView);
         }
     }

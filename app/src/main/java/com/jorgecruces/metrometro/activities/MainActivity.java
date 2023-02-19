@@ -20,15 +20,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
-    public void goNextActivity(View view) {
+    public void goToLinesMenuActivity(View view) {
         Intent intent = new Intent(this, MenuMetroActivity.class);
         startActivity(intent);
     }
 
-    public void resetButton(View view) {
+    public void resetSharedPreferences(View view) {
+        // TODO - Add a prompt before deleting
         SharedPreferences sharedPref = this.getSharedPreferences(
                 String.valueOf(R.string.app_name), Context.MODE_PRIVATE);
         sharedPref.edit().clear().commit();

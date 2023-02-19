@@ -5,85 +5,73 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewMenu"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="20dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contraintLayoutViewContainer"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/lineas_metro_line_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="75dp"
-                android:gravity="clip_horizontal|center|center_horizontal|center_vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/lineaName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
-
-                <ImageView
-                    android:id="@+id/backgroundMetroMenu"
-                    android:layout_width="300px"
-                    android:layout_height="300px"
-                    android:layout_centerInParent="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/metro_svg" />
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="71dp"
-                    android:layout_height="80dp"
-                    android:layout_centerInParent="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_baseline_circle_24" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/lineaName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="120dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Linea 1"
-                android:textColor="#2C0453"
-                android:textSize="34sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:gravity="clip_horizontal|center|center_horizontal|center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/starView"
-                android:layout_width="54dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="22dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/lineaName"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/btn_star" />
+                android:id="@+id/backgroundMetroMenu"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/metro_svg" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="62dp"
+                android:layout_height="78dp"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_baseline_circle_24" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/lineaName"
+            android:layout_width="108dp"
+            android:layout_height="46dp"
+            android:fontFamily="@font/titiliumweb_bold"
+            android:text="Linea 1"
+            android:textColor="#2C0453"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/starView"
+            app:layout_constraintHorizontal_bias="0.383"
+            app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/starView"
+            android:layout_width="74dp"
+            android:layout_height="65dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/lines_metro_star"
+            app:tint="#939393" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

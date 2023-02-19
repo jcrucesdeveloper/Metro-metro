@@ -4,22 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/lines_metro_background"
     tools:context=".activities.MenuMetroActivity">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="63dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="9dp"
-        android:onClick="goBackMainActivity"
-        app:layout_constraintBottom_toTopOf="@+id/menuMetroRecyclerView"
-        app:layout_constraintEnd_toStartOf="@+id/textViewAlternative2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menuMetroRecyclerView"
@@ -29,53 +15,51 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAlternative2">
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLineMenuTitle">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/textViewAlternative2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Lineas Metro"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.414"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/scoreStarView"
-        android:layout_width="35dp"
-        android:layout_height="49dp"
+        android:layout_width="80dp"
+        android:layout_height="73dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="27dp"
-        android:fontFamily="sans-serif-light"
+        android:background="@drawable/lines_metro_star"
+        android:elevation="3dp"
+        android:fontFamily="@font/titiliumweb_bold"
+        android:gravity="center_horizontal|center_vertical"
         android:text="0"
         android:textAlignment="center"
-        android:textSize="38sp"
+        android:textColor="#000000"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/menuMetroRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="63dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/menuMetroRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toEndOf="@+id/textViewAlternative2"
+        android:id="@+id/imageViewLineMenuTitle"
+        android:layout_width="216dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/scoreStarView"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/lines_metro_title" />
+
+    <ImageView
+        android:id="@+id/imageViewButtonBack"
+        android:layout_width="56dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="19dp"
+        android:onClick="goToMainActivity"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewLineMenuTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/lines_metro_button_back" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

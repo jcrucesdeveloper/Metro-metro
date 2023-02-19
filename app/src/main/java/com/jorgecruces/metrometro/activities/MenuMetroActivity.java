@@ -75,7 +75,7 @@ public class MenuMetroActivity extends AppCompatActivity {
         return sharedPref.getBoolean(lineName,false);
     }
 
-    public void goBackMainActivity(View view) {
+    public void goToMainActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

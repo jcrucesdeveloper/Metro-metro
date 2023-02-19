@@ -5,99 +5,113 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/lines_metro_background"
     tools:context=".activities.PlayGameActivity">
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="64dp"
-        android:layout_height="55dp"
+        android:layout_width="72dp"
+        android:layout_height="61dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="331dp"
+        android:layout_marginTop="24dp"
         android:contentDescription="Button"
         android:onClick="goBackToMenu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/textViewTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        app:srcCompat="@drawable/lines_metro_button_back" />
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="218dp"
+        android:layout_width="0dp"
         android:layout_height="59dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_game_line"
+        android:fontFamily="@font/titiliumweb_bold"
+        android:gravity="center_horizontal|center_vertical"
         android:text="Lineas Metro"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/textViewAlternative2"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="124dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:layout_width="162dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_metro_color"
+        android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
         android:text="SAN PEDRO"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative3"
+        app:layout_constraintEnd_toStartOf="@+id/textViewAlternative1"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewAlternative1"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="162dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginBottom="124dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_metro_color"
+        android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
         android:text="SAN PEDRO"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toEndOf="@+id/textViewAlternative3" />
+        app:layout_constraintStart_toEndOf="@+id/textViewAlternative2" />
 
     <TextView
         android:id="@+id/textViewAlternative4"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="162dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginBottom="24dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_metro_color"
+        android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
         android:text="SAN PEDRO"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewAlternative3" />
+        app:layout_constraintStart_toEndOf="@+id/textViewAlternative3"
+        tools:background="@drawable/button_metro_color" />
 
     <TextView
         android:id="@+id/textViewAlternative3"
-        android:layout_width="150dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="24dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:layout_width="162dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_metro_color"
+        android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
         android:text="SAN PEDRO"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewAlternative4"
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative2"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAlternative1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,28 +121,36 @@
             android:id="@+id/textViewCurrentNumberQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/titiliumweb_bold"
             android:text="0"
-            android:textSize="24sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/titiliumweb_bold"
             android:text="/"
-            android:textSize="24sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textViewMaxPosition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/titiliumweb_bold"
             android:text="20"
-            android:textSize="24sp" />
+            android:textSize="30sp" />
     </LinearLayout>
 
     <HorizontalScrollView
         android:id="@+id/mainScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/gameplay_container"
+        android:padding="3dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
