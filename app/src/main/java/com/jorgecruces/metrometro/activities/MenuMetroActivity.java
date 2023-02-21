@@ -79,4 +79,10 @@ public class MenuMetroActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.goToMainActivity(null);
+    }
 }

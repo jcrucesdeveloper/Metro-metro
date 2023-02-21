@@ -31,6 +31,10 @@ public class MediaPlayerReproducer {
         }
     }
 
+    public boolean getAudioBoolean() {
+        return this.isAudioReproducing;
+    }
+
     public static MediaPlayerReproducer getInstance()
     {
         return mp;
@@ -74,8 +78,6 @@ public class MediaPlayerReproducer {
         {
             e.printStackTrace();
         }
-
-
     }
 
 }

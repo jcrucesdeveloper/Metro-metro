@@ -1,25 +1,18 @@
 package com.jorgecruces.metrometro.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +23,6 @@ import com.jorgecruces.metrometro.logic.PickerStationsAlternative;
 import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
 import com.jorgecruces.metrometro.model.Station;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -303,7 +294,7 @@ public class PlayGameActivity extends AppCompatActivity {
         winningDialog.setContentView(R.layout.winning_dialog);
 
         // Button
-        Button winningButton = (Button) winningDialog.findViewById(R.id.winningButton);
+        Button winningButton = (Button) winningDialog.findViewById(R.id.buttonResetConfirmationDialog);
 
         winningButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, MenuMetroActivity.class);

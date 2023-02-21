@@ -35,9 +35,11 @@
         android:layout_height="97dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="-16dp"
+        android:onClick="goToMetroInfoActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewButtonPlay"
-        app:srcCompat="@drawable/main_menu_button_information" />
+        app:srcCompat="@drawable/main_menu_button_information"
+        tools:ignore="UsingOnClickInXml" />
 
     <ImageView
         android:id="@+id/imageViewButtonReset"
@@ -46,7 +48,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="-16dp"
         android:layout_marginEnd="8dp"
-        android:onClick="resetSharedPreferences"
+        android:onClick="showConfirmationResetDialog"
         app:layout_constraintEnd_toStartOf="@+id/imageViewButtonConfiguration"
         app:layout_constraintStart_toEndOf="@+id/imageViewButtonInformation"
         app:layout_constraintTop_toBottomOf="@+id/imageViewButtonPlay"
@@ -58,6 +60,7 @@
         android:layout_height="95dp"
         android:layout_marginTop="-16dp"
         android:layout_marginEnd="48dp"
+        android:onClick="showConfigurationDialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewButtonReset"
         app:layout_constraintTop_toBottomOf="@+id/imageViewButtonPlay"

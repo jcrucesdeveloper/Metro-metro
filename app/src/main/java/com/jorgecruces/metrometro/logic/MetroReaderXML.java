@@ -1,7 +1,6 @@
 package com.jorgecruces.metrometro.logic;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
