@@ -313,4 +313,10 @@ public class PlayGameActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.goBackToMenu(null);
+    }
+
 }
