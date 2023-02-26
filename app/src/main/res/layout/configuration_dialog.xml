@@ -26,6 +26,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
+        android:id="@+id/switchMusicConfiguration"
+        android:layout_width="241dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/titiliumweb_regular"
+        android:text="Musica"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchSoundConfiguration" />
+
+    <Switch
         android:id="@+id/switchSoundConfiguration"
         android:layout_width="241dp"
         android:layout_height="75dp"

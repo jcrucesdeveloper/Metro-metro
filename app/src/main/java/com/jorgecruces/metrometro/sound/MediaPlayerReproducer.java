@@ -1,9 +1,17 @@
 package com.jorgecruces.metrometro.sound;
 
 import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
+import android.provider.MediaStore;
+import android.util.Log;
 
 import com.jorgecruces.metrometro.R;
+
+import java.io.IOException;
 
 /**
  * Singleton that reproduce the sound across the App
@@ -12,6 +20,7 @@ public class MediaPlayerReproducer {
 
     private static final MediaPlayerReproducer mp = new MediaPlayerReproducer();
     private boolean isAudioReproducing = true;
+    private boolean isMusicOn = true;
 
     private MediaPlayerReproducer()
     {
@@ -19,20 +28,25 @@ public class MediaPlayerReproducer {
     }
 
     /**
-     * Change between reproduce sound or do nothing
+     * Change between reproduce Sound
      */
     public void changeAudioReproducing() {
-        if (isAudioReproducing)
-        {
-            isAudioReproducing = false;
-        } else
-        {
-            isAudioReproducing = true;
-        }
+        isAudioReproducing = !isAudioReproducing;
+    }
+
+    /**
+     * Change between reproduce Music
+     */
+    public void changeMusicReproducing() {
+        isMusicOn = !isMusicOn;
     }
 
     public boolean getAudioBoolean() {
         return this.isAudioReproducing;
+    }
+
+    public boolean getMusicBoolean() {
+        return this.isMusicOn;
     }
 
     public static MediaPlayerReproducer getInstance()
@@ -56,6 +70,12 @@ public class MediaPlayerReproducer {
     public void reproduceWinSound(Context context)
     {
         reproduceSound(context, R.raw.win_sound);
+    }
+
+    public void reproduceMusic(Context context) {
+        if (!isMusicOn) {return;}
+        PerfectLoopMediaPlayer perfectLoopMediaPlayer = PerfectLoopMediaPlayer.create(context,R.raw.music_intro_loop_3);
+
     }
 
     /**

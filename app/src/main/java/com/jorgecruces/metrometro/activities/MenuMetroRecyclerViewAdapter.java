@@ -43,7 +43,6 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
     @Override
     public void onBindViewHolder(@NonNull MenuMetroRecyclerViewAdapter.MyViewHolder holder, int position) {
 
-        Log.d("TEST", "test");
         MetroMenu currentMetroMenu = metroMenuList.get(position);
 
         String lineName = currentMetroMenu.getMetroName();

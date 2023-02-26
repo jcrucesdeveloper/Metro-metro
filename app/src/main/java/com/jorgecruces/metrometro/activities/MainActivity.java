@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToMetroInfoActivity(View view) {
+        MediaPlayerReproducer.getInstance().reproduceClickSound(this);
         Intent intent = new Intent(this, MetroInformationActivity.class);
         startActivity(intent);
     }
@@ -52,12 +53,22 @@ public class MainActivity extends AppCompatActivity {
         // Switch
         @SuppressLint("UseSwitchCompatOrMaterialCode")
         Switch switchSoundConfiguration = (Switch) dialog.findViewById(R.id.switchSoundConfiguration);
+        @SuppressLint("UseSwitchCompatOrMaterialCode")
+        Switch switchMusicConfiguration = (Switch) dialog.findViewById(R.id.switchMusicConfiguration);
 
         boolean isAudioOn = MediaPlayerReproducer.getInstance().getAudioBoolean();
+        boolean isMusicOn = MediaPlayerReproducer.getInstance().getMusicBoolean();
+
         switchSoundConfiguration.setChecked(isAudioOn);
+        switchMusicConfiguration.setChecked(isMusicOn);
+
 
         switchSoundConfiguration.setOnClickListener(switchSound -> {
             MediaPlayerReproducer.getInstance().changeAudioReproducing();
+        });
+
+        switchMusicConfiguration.setOnClickListener(switchSound -> {
+            MediaPlayerReproducer.getInstance().changeMusicReproducing();
         });
 
         // ImageView

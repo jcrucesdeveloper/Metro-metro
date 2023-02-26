@@ -23,6 +23,7 @@ import com.jorgecruces.metrometro.logic.PickerStationsAlternative;
 import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
 import com.jorgecruces.metrometro.model.Station;
+import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,6 +52,7 @@ public class PlayGameActivity extends AppCompatActivity {
         this.initializeLevelViews();
         this.setCurrentStationQuestion(this.position);
         this.drawStationView(150, this.currentStationName, this.lineColorHex);
+        this.reproduceMusic();
     }
 
     private void drawStationView(float marginStart, String stationName, String colorHex) {
@@ -73,6 +75,10 @@ public class PlayGameActivity extends AppCompatActivity {
 
         stationViews.add(stationView);
         gameLayout.addView(stationView);
+    }
+
+    private void reproduceMusic() {
+        MediaPlayerReproducer.getInstance().reproduceMusic(this);
     }
 
     /**
