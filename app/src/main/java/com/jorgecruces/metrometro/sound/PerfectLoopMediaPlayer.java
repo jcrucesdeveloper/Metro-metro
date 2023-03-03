@@ -61,7 +61,7 @@ public class PerfectLoopMediaPlayer {
             mNextPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    mNextPlayer.seekTo(1548);
+                    mNextPlayer.seekTo(0);
                     mCurrentPlayer.setNextMediaPlayer(mNextPlayer);
                     mCurrentPlayer.setOnCompletionListener(onCompletionListener);
                 }
@@ -110,7 +110,7 @@ public class PerfectLoopMediaPlayer {
             mNextPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    mNextPlayer.seekTo(1548);
+                    mNextPlayer.seekTo(0);
                     mCurrentPlayer.setNextMediaPlayer(mNextPlayer);
                     mCurrentPlayer.setOnCompletionListener(onCompletionListener);
                 }

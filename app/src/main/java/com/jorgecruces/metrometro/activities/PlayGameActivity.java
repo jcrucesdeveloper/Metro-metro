@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -43,6 +44,9 @@ public class PlayGameActivity extends AppCompatActivity {
     private ArrayList<Station> alternatives;
     private ArrayList<StationView> stationViews;
 
+    // Music
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +56,18 @@ public class PlayGameActivity extends AppCompatActivity {
         this.initializeLevelViews();
         this.setCurrentStationQuestion(this.position);
         this.drawStationView(150, this.currentStationName, this.lineColorHex);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         this.reproduceMusic();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.stopMusic();
     }
 
     private void drawStationView(float marginStart, String stationName, String colorHex) {
@@ -78,8 +93,20 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void reproduceMusic() {
-        MediaPlayerReproducer.getInstance().reproduceMusic(this);
+        if (MediaPlayerReproducer.getInstance().getMusicBoolean()) {
+            this.mediaPlayer = MediaPlayer.create(this, R.raw.music_gameplay_loop);
+            this.mediaPlayer.setLooping(true);
+            this.mediaPlayer.start();
+        }
     }
+
+    private void stopMusic() {
+        if (this.mediaPlayer != null) {
+            this.mediaPlayer.stop();
+        }
+    }
+
+
 
     /**
      * Transform Dp value to pixel
@@ -141,7 +168,6 @@ public class PlayGameActivity extends AppCompatActivity {
         for (Line tempLine: lines) {
             if (tempLine.getName().equals(lineName)) {
                 this.stations = tempLine.getStations();
-                // TODO - Check this
                 this.lineColorHex = tempLine.getColor();
                 return;
             }

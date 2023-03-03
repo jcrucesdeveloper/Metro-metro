@@ -74,7 +74,6 @@ public class MediaPlayerReproducer {
 
     public void reproduceMusic(Context context) {
         if (!isMusicOn) {return;}
-        PerfectLoopMediaPlayer perfectLoopMediaPlayer = PerfectLoopMediaPlayer.create(context,R.raw.music_intro_loop_3);
 
     }
 
