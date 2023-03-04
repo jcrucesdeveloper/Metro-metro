@@ -1,58 +1,49 @@
 package com.jorgecruces.metrometro.sound;
 
 import android.content.Context;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.os.Build;
-import android.provider.MediaStore;
-import android.util.Log;
 
 import com.jorgecruces.metrometro.R;
 
-import java.io.IOException;
 
 /**
- * Singleton that reproduce the sound across the App
+ * Singleton class that works as a general Audio Manager
  */
 public class MediaPlayerReproducer {
 
     private static final MediaPlayerReproducer mp = new MediaPlayerReproducer();
+    private MediaPlayer mediaPlayer;
+
     private boolean isAudioReproducing = true;
     private boolean isMusicOn = true;
 
+    /**
+     Singleton Pattern
+     */
     private MediaPlayerReproducer()
     {
-
-    }
-
-    /**
-     * Change between reproduce Sound
-     */
-    public void changeAudioReproducing() {
-        isAudioReproducing = !isAudioReproducing;
-    }
-
-    /**
-     * Change between reproduce Music
-     */
-    public void changeMusicReproducing() {
-        isMusicOn = !isMusicOn;
-    }
-
-    public boolean getAudioBoolean() {
-        return this.isAudioReproducing;
-    }
-
-    public boolean getMusicBoolean() {
-        return this.isMusicOn;
     }
 
     public static MediaPlayerReproducer getInstance()
     {
         return mp;
     }
+
+
+    // Audio and Music Setting
+    public void changeAudioReproducing() {
+        isAudioReproducing = !isAudioReproducing;
+    }
+    public void changeMusicReproducing() {
+        isMusicOn = !isMusicOn;
+    }
+    public boolean getAudioBoolean() {
+        return this.isAudioReproducing;
+    }
+    public boolean getMusicBoolean() {
+        return this.isMusicOn;
+    }
+
 
     /**
      * Reproduce click Sound
@@ -72,9 +63,17 @@ public class MediaPlayerReproducer {
         reproduceSound(context, R.raw.win_sound);
     }
 
-    public void reproduceMusic(Context context) {
+    public void reproduceMusicMainMenu(Context context) {
         if (!isMusicOn) {return;}
+//        this.mediaPlayer = MediaPlayer.create(context, R.raw.);
+//        this.mediaPlayer.setLooping(true);
+//        this.mediaPlayer.start();
+    }
 
+    public void stopMusicMainMenu() {
+        if (this.mediaPlayer != null) {
+            this.mediaPlayer.stop();
+        }
     }
 
     /**

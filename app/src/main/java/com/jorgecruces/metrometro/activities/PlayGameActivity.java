@@ -9,10 +9,12 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -133,6 +135,7 @@ public class PlayGameActivity extends AppCompatActivity {
             throw new Error("Hubo un problema al iniciar el level");
         }
         this.lineName = extra.getString("LINEA");
+        Log.d("LINE NAME", this.lineName);
     }
 
     /**
@@ -301,6 +304,12 @@ public class PlayGameActivity extends AppCompatActivity {
         this.showWinningDialog();
     }
 
+    private void resetLevel() {
+        Intent intent = new Intent(this.getApplicationContext(), PlayGameActivity.class);
+        intent.putExtra("LINEA", this.lineName);
+        this.startActivity(intent);
+    }
+
     private void updateProgressInfo() {
 
         SharedPreferences sharedPref = this.getSharedPreferences(
@@ -323,6 +332,8 @@ public class PlayGameActivity extends AppCompatActivity {
     private void showWinningDialog() {
         // Show dialog
         Dialog winningDialog = new Dialog(this);
+        winningDialog.setCancelable(false);
+        winningDialog.setCanceledOnTouchOutside(false);
         winningDialog.setContentView(R.layout.winning_dialog);
 
         // Button
@@ -335,9 +346,25 @@ public class PlayGameActivity extends AppCompatActivity {
         winningDialog.show();
     }
 
+
     private void onIncorrectAlternative() {
-        Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show();
-        //TODO - add ads
+        this.onLostLevel();
+    }
+
+    private void onLostLevel() {
+        // TODO - Ads
+        Dialog lostDialog = new Dialog(this);
+        lostDialog.setCancelable(false);
+        lostDialog.setCanceledOnTouchOutside(false);
+        lostDialog.setContentView(R.layout.lost_dialog);
+
+        ImageView resetLevelImageView = (ImageView) lostDialog.findViewById(R.id.imageViewResetLevel);
+
+        resetLevelImageView.setOnClickListener(listener-> {
+            this.resetLevel();
+        });
+
+        lostDialog.show();
     }
 
     public void goBackToMenu(View view) {

@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     public void goToLinesMenuActivity(View view) {
         Intent intent = new Intent(this, MenuMetroActivity.class);
         startActivity(intent);
@@ -99,9 +105,6 @@ public class MainActivity extends AppCompatActivity {
             this.resetSharedPreferences();
             dialog.dismiss();
         });
-
-
-
 
         // Reset Shared Preferences
         dialog.show();

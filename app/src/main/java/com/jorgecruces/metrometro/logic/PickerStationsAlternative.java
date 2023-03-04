@@ -1,16 +1,9 @@
 package com.jorgecruces.metrometro.logic;
 
-import android.os.Build;
-import android.util.Log;
-
-import androidx.annotation.RequiresApi;
-
-import com.jorgecruces.metrometro.logger.LoggerSout;
 import com.jorgecruces.metrometro.model.Station;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 
 public class PickerStationsAlternative {
 

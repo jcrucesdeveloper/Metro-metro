@@ -8,7 +8,7 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/nextLevelTextView"
+        android:id="@+id/lostTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/titiliumweb_bold"
@@ -60,7 +60,7 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonGoBackConfirmationDialog"
         app:layout_constraintEnd_toStartOf="@+id/buttonResetConfirmationDialog"
         app:layout_constraintStart_toEndOf="@+id/buttonGoBackConfirmationDialog"
-        app:layout_constraintTop_toBottomOf="@+id/nextLevelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/lostTextView"
         app:srcCompat="@drawable/confirmation_dialog" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
