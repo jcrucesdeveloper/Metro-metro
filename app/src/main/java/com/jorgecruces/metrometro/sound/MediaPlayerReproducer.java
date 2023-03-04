@@ -1,6 +1,7 @@
 package com.jorgecruces.metrometro.sound;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 
 import com.jorgecruces.metrometro.R;
@@ -16,6 +17,10 @@ public class MediaPlayerReproducer {
 
     private boolean isAudioReproducing = true;
     private boolean isMusicOn = true;
+
+    private boolean isMusicReproducing = false;
+
+    private Intent musicIntent;
 
     /**
      Singleton Pattern
@@ -64,15 +69,20 @@ public class MediaPlayerReproducer {
     }
 
     public void reproduceMusicMainMenu(Context context) {
-        if (!isMusicOn) {return;}
-//        this.mediaPlayer = MediaPlayer.create(context, R.raw.);
-//        this.mediaPlayer.setLooping(true);
-//        this.mediaPlayer.start();
+        if (!isMusicOn || isMusicReproducing) {return;}
+
+        // Reproduce music
+
+
+        isMusicReproducing = true;
     }
 
-    public void stopMusicMainMenu() {
-        if (this.mediaPlayer != null) {
-            this.mediaPlayer.stop();
+    public void stopMusicMainMenu(Context context) {
+        if (isMusicReproducing && musicIntent != null) {
+
+            //Stop music
+
+            isMusicReproducing = false;
         }
     }
 

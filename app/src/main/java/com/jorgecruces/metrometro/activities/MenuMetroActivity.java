@@ -1,6 +1,8 @@
 package com.jorgecruces.metrometro.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jorgecruces.metrometro.R;
@@ -18,6 +21,7 @@ import com.jorgecruces.metrometro.logic.MetroReaderXML;
 import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
 import com.jorgecruces.metrometro.model.MetroMenu;
+import com.jorgecruces.metrometro.sound.BackgroundMusic;
 
 import java.util.ArrayList;
 
@@ -34,7 +38,20 @@ public class MenuMetroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_metro);
         scoreStarView = findViewById(R.id.scoreStarView);
+    }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BackgroundMusic.onStart(this);
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundMusic.onStop(this);
     }
 
     @Override
