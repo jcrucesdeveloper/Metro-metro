@@ -47,7 +47,8 @@ public class PlayGameActivity extends AppCompatActivity {
     private ArrayList<StationView> stationViews;
 
     // Music
-    private MediaPlayer mediaPlayerMusicGameplay;
+    private MediaPlayer mediaPlayerGameplayGameplay;
+    private boolean isReproducingGameplayMusic = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,15 +97,16 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void reproduceMusic() {
         if (MediaPlayerReproducer.getInstance().getMusicBoolean()) {
-            this.mediaPlayerMusicGameplay = MediaPlayer.create(this, R.raw.music_gameplay_loop);
-            this.mediaPlayerMusicGameplay.setLooping(true);
-            this.mediaPlayerMusicGameplay.start();
+            this.mediaPlayerGameplayGameplay = MediaPlayer.create(this, R.raw.music_gameplay_loop);
+            this.mediaPlayerGameplayGameplay.setLooping(true);
+            this.mediaPlayerGameplayGameplay.start();
+            isReproducingGameplayMusic = true;
         }
     }
 
     private void stopMusic() {
-        if (this.mediaPlayerMusicGameplay != null) {
-            this.mediaPlayerMusicGameplay.stop();
+        if (this.mediaPlayerGameplayGameplay != null) {
+            this.mediaPlayerGameplayGameplay.stop();
         }
     }
 
@@ -302,7 +304,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void onWinLevel() {
-        this.mediaPlayerMusicGameplay.stop();
+        this.stopMusicGameplay();
         // Reproduce win sound
         MediaPlayerReproducer.getInstance().reproduceSoundWinLevel(this);
         this.updateProgressInfo();
@@ -356,9 +358,18 @@ public class PlayGameActivity extends AppCompatActivity {
         this.onLostLevel();
     }
 
+    private void stopMusicGameplay() {
+        if(isReproducingGameplayMusic) {
+            if(mediaPlayerGameplayGameplay != null) {
+                this.mediaPlayerGameplayGameplay.stop();
+                isReproducingGameplayMusic = false;
+            }
+        }
+    }
+
     private void onLostLevel() {
         // Stop Gameplay Music
-        this.mediaPlayerMusicGameplay.stop();
+        this.stopMusicGameplay();
         MediaPlayerReproducer.getInstance().reproduceLostSound(this);
 
         // TODO - Ads
