@@ -22,6 +22,7 @@ import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
 import com.jorgecruces.metrometro.model.MetroMenu;
 import com.jorgecruces.metrometro.sound.BackgroundMusic;
+import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,6 @@ public class MenuMetroActivity extends AppCompatActivity {
         super.onStart();
         BackgroundMusic.onStart(this);
     }
-
 
     @Override
     protected void onStop() {
@@ -93,13 +93,19 @@ public class MenuMetroActivity extends AppCompatActivity {
     }
 
     public void goToMainActivity(View view) {
+        // Sound Effect
+        MediaPlayerReproducer.getInstance().reproduceClickSound(this);
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        // Sound Effect
+        MediaPlayerReproducer.getInstance().reproduceClickSound(this);
         this.goToMainActivity(null);
+
+        super.onBackPressed();
     }
 }

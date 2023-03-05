@@ -11,6 +11,7 @@ import android.view.View;
 import com.jorgecruces.metrometro.R;
 import com.jorgecruces.metrometro.customViews.ZoomableImageView;
 import com.jorgecruces.metrometro.sound.BackgroundMusic;
+import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
 
 public class MetroInformationActivity extends AppCompatActivity {
 
@@ -39,6 +40,9 @@ public class MetroInformationActivity extends AppCompatActivity {
     }
 
     public void goToMainActivity(View view) {
+        // Sound Effect
+        MediaPlayerReproducer.getInstance().reproduceClickSound(this);
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

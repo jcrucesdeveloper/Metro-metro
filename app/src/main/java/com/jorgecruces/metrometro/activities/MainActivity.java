@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToLinesMenuActivity(View view) {
+        // Sound Effect
+        MediaPlayerReproducer.getInstance().reproduceClickSound(this);
+
         Intent intent = new Intent(this, MenuMetroActivity.class);
         startActivity(intent);
     }
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showConfigurationDialog(View view) {
+        // Sound Effect
+        MediaPlayerReproducer.getInstance().reproduceClickSound(this);
         // Show dialog
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.configuration_dialog);
@@ -80,22 +85,34 @@ public class MainActivity extends AppCompatActivity {
 
 
         switchSoundConfiguration.setOnClickListener(switchSound -> {
+            MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             MediaPlayerReproducer.getInstance().changeAudioReproducing();
         });
 
         switchMusicConfiguration.setOnClickListener(switchSound -> {
+            MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             MediaPlayerReproducer.getInstance().changeMusicReproducing();
+            // Stop Music
+            if (MediaPlayerReproducer.getInstance().getMusicBoolean()) {
+                BackgroundMusic.onStart(this);
+            } else {
+                BackgroundMusic.forceStop();
+
+            }
         });
 
         // ImageView
         ImageView goBackImageView = (ImageView) dialog.findViewById(R.id.goBackButtonConfiguration);
         goBackImageView.setOnClickListener(imageView -> {
+            MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             dialog.dismiss();
         });
         dialog.show();
     }
 
     public void showConfirmationResetDialog(View view) {
+        // Sound Effect
+        MediaPlayerReproducer.getInstance().reproduceClickSound(this);
         // Show dialog
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.confirmation_reset_dialog);
@@ -108,10 +125,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         buttonGoBack.setOnClickListener(button -> {
+            MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             dialog.dismiss();
         });
 
         buttonResetSharedPreferences.setOnClickListener(button -> {
+            MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             this.resetSharedPreferences();
             dialog.dismiss();
         });

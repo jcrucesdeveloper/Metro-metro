@@ -56,17 +56,31 @@ public class MediaPlayerReproducer {
      */
     public void reproduceClickSound(Context context)
     {
-        reproduceSound(context, R.raw.click);
+        reproduceSound(context, R.raw.sound_click_all);
     }
+
+    public void reproduceLostSound(Context context) {
+        reproduceSound(context, R.raw.sound_lost);
+    }
+
+    public void reproduceCorrectAlternativeSound(Context context) {
+        reproduceSound(context, R.raw.sound_correct_alternative);
+    }
+
+    public void reproduceSoundWinLevel(Context context) {
+        reproduceSound(context, R.raw.sound_win);
+
+    }
+
 
     /**
      * Reproduce Win Sound
      * @param context activity
      */
-    public void reproduceWinSound(Context context)
-    {
-        reproduceSound(context, R.raw.win_sound);
-    }
+//    public void reproduceWinSound(Context context)
+//    {
+//        reproduceSound(context, R.raw.win_sound);
+//    }
 
     public void reproduceMusicMainMenu(Context context) {
         if (!isMusicOn || isMusicReproducing) {return;}
@@ -81,7 +95,6 @@ public class MediaPlayerReproducer {
         if (isMusicReproducing && musicIntent != null) {
 
             //Stop music
-
             isMusicReproducing = false;
         }
     }

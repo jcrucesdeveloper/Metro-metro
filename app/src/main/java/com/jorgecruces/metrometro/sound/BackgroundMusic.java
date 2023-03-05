@@ -11,8 +11,10 @@ public abstract class BackgroundMusic {
     private static int startCounter = 0;
 
     public static void onStart(Context context) {
+        if (!MediaPlayerReproducer.getInstance().getMusicBoolean()) {
+            return;
+        }
         startCounter++;
-        Log.d("COUNTER START",Integer.toString(startCounter));
         if (startCounter == 1) {
             mediaPlayer = MediaPlayer.create(context,R.raw.music_menu_loop);
             mediaPlayer.setLooping(true);
@@ -22,11 +24,19 @@ public abstract class BackgroundMusic {
     }
 
     public static void onStop(Context context) {
+        if (!MediaPlayerReproducer.getInstance().getMusicBoolean()) {
+            return;
+        }
         startCounter--;
-        Log.d("COUNTER STOP",Integer.toString(startCounter));
         if (startCounter == 0) {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
+    }
+
+    public static void forceStop() {
+        startCounter = 0;
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 }

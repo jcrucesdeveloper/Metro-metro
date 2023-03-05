@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jorgecruces.metrometro.R;
 import com.jorgecruces.metrometro.model.MetroMenu;
+import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
 
 import java.util.ArrayList;
 
@@ -51,6 +52,7 @@ public class MenuMetroRecyclerViewAdapter extends RecyclerView.Adapter<MenuMetro
         holder.lineaMetroName.setText(lineName);
         holder.backgroundMetroMenu.setColorFilter(color);
         holder.constraintLayoutContainer.setOnClickListener(view -> {
+            MediaPlayerReproducer.getInstance().reproduceClickSound(this.context.getApplicationContext());
             Intent intent = new Intent(this.context.getApplicationContext(), PlayGameActivity.class);
             intent.putExtra("LINEA", lineName);
             this.context.startActivity(intent);

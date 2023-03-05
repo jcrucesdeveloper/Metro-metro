@@ -47,7 +47,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private ArrayList<StationView> stationViews;
 
     // Music
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayerMusicGameplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,15 +96,15 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void reproduceMusic() {
         if (MediaPlayerReproducer.getInstance().getMusicBoolean()) {
-            this.mediaPlayer = MediaPlayer.create(this, R.raw.music_gameplay_loop);
-            this.mediaPlayer.setLooping(true);
-            this.mediaPlayer.start();
+            this.mediaPlayerMusicGameplay = MediaPlayer.create(this, R.raw.music_gameplay_loop);
+            this.mediaPlayerMusicGameplay.setLooping(true);
+            this.mediaPlayerMusicGameplay.start();
         }
     }
 
     private void stopMusic() {
-        if (this.mediaPlayer != null) {
-            this.mediaPlayer.stop();
+        if (this.mediaPlayerMusicGameplay != null) {
+            this.mediaPlayerMusicGameplay.stop();
         }
     }
 
@@ -291,6 +291,8 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void onCorrectAlternative() {
+        // Reproduce Correct alternative sound
+        MediaPlayerReproducer.getInstance().reproduceCorrectAlternativeSound(this);
         this.position = this.position + 1;
         if (this.position < (this.stations.size() - 1)) {
             this.setCurrentStationQuestion(this.position);
@@ -300,6 +302,9 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void onWinLevel() {
+        this.mediaPlayerMusicGameplay.stop();
+        // Reproduce win sound
+        MediaPlayerReproducer.getInstance().reproduceSoundWinLevel(this);
         this.updateProgressInfo();
         this.showWinningDialog();
     }
@@ -352,6 +357,10 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void onLostLevel() {
+        // Stop Gameplay Music
+        this.mediaPlayerMusicGameplay.stop();
+        MediaPlayerReproducer.getInstance().reproduceLostSound(this);
+
         // TODO - Ads
         Dialog lostDialog = new Dialog(this);
         lostDialog.setCancelable(false);
@@ -361,6 +370,7 @@ public class PlayGameActivity extends AppCompatActivity {
         ImageView resetLevelImageView = (ImageView) lostDialog.findViewById(R.id.imageViewResetLevel);
 
         resetLevelImageView.setOnClickListener(listener-> {
+            MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             this.resetLevel();
         });
 
@@ -368,6 +378,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void goBackToMenu(View view) {
+        MediaPlayerReproducer.getInstance().reproduceClickSound(this);
         Intent intent = new Intent(this, MenuMetroActivity.class);
         startActivity(intent);
     }
