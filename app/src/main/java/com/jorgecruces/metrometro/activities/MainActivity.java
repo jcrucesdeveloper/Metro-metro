@@ -17,6 +17,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.jorgecruces.metrometro.R;
 import com.jorgecruces.metrometro.sound.BackgroundMusic;
 import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
@@ -25,6 +30,8 @@ import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageViewMenuLogo;
+    private AdView mAdView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +39,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.imageViewMenuLogo = findViewById(R.id.imageViewLogo);
         this.animateFadeInButtons();
+        this.loadAds();
+    }
+
+    private void loadAds() {
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
 
