@@ -1,5 +1,6 @@
 package com.jorgecruces.metrometro.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -19,11 +20,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.jorgecruces.metrometro.R;
 import com.jorgecruces.metrometro.customViews.StationView;
 import com.jorgecruces.metrometro.logic.MetroReaderXML;
@@ -56,8 +63,11 @@ public class PlayGameActivity extends AppCompatActivity {
     private boolean isReproducingGameplayMusic = false;
 
     // Ads
-
+    private AdRequest adRequest;
     private AdView mAdView;
+    private RewardedAd rewardedAd;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +83,9 @@ public class PlayGameActivity extends AppCompatActivity {
 
 
     private void loadAds() {
+        adRequest = new AdRequest.Builder().build();
 
+        // Banner
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -81,8 +93,25 @@ public class PlayGameActivity extends AppCompatActivity {
         });
 
         mAdView = findViewById(R.id.adViewGameplay);
-        AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        // Bonus Interstitial
+        this.loadInterstitial(adRequest);
+    }
+
+    private void loadInterstitial(AdRequest adRequest) {
+        RewardedAd.load(this, "ca-app-pub-8814283715092277/4208494666",
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        rewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd ad) {
+                        rewardedAd = ad;
+                    }
+                });
     }
 
     @Override
@@ -396,20 +425,37 @@ public class PlayGameActivity extends AppCompatActivity {
         this.stopMusicGameplay();
         MediaPlayerReproducer.getInstance().reproduceLostSound(this);
 
-        // TODO - Ads
         Dialog lostDialog = new Dialog(this);
         lostDialog.setCancelable(false);
         lostDialog.setCanceledOnTouchOutside(false);
         lostDialog.setContentView(R.layout.lost_dialog);
 
         ImageView resetLevelImageView = (ImageView) lostDialog.findViewById(R.id.imageViewResetLevel);
+        ImageView imageViewAds = (ImageView) lostDialog.findViewById(R.id.imageViewAds);
 
         resetLevelImageView.setOnClickListener(listener-> {
             MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             this.resetLevel();
         });
 
+        imageViewAds.setOnClickListener(listener -> {
+            this.showAds(lostDialog);
+        });
+
         lostDialog.show();
+    }
+
+    private void showAds(Dialog lostDialog) {
+        if (rewardedAd != null) {
+            rewardedAd.show(this, new OnUserEarnedRewardListener() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    // Handle the reward.
+                    lostDialog.dismiss();
+                    loadInterstitial(adRequest);
+                }
+            });
+        }
     }
 
     public void goBackToMenu(View view) {
