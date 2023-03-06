@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -14,8 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.dynamicanimation.animation.DynamicAnimation;
-import androidx.dynamicanimation.animation.SpringAnimation;
 
 import com.jorgecruces.metrometro.R;
 import com.jorgecruces.metrometro.sound.BackgroundMusic;
@@ -24,10 +24,14 @@ import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ImageView imageViewMenuLogo;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.imageViewMenuLogo = findViewById(R.id.imageViewLogo);
+        this.animateFadeInButtons();
     }
 
 
@@ -35,6 +39,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         BackgroundMusic.onStart(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.startMenuLogoAnimation();
+    }
+    
+    private void animateFadeInButtons() {
+        Animation fadeInAnimation = AnimationUtils.loadAnimation(this,R.anim.fadein);
+        ImageView imageViewPlayButton = findViewById(R.id.imageViewButtonPlay);
+        ImageView imageViewInformationButton = findViewById(R.id.imageViewButtonInformation);
+        ImageView imageViewResetButton = findViewById(R.id.imageViewButtonReset);
+        ImageView imageViewConfigurationButton = findViewById(R.id.imageViewButtonConfiguration);
+
+        imageViewPlayButton.startAnimation(fadeInAnimation);
+        imageViewInformationButton.startAnimation(fadeInAnimation);
+        imageViewResetButton.startAnimation(fadeInAnimation);
+        imageViewConfigurationButton.startAnimation(fadeInAnimation);
+    }
+
+    private void startMenuLogoAnimation() {
+        Animation floatingAnimation = AnimationUtils.loadAnimation(this,R.anim.floating);
+        this.imageViewMenuLogo.startAnimation(floatingAnimation);
     }
 
     @Override

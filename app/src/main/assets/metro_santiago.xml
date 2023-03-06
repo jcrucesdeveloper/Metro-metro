@@ -140,11 +140,4 @@
         <station>Lo valledor</station>
         <station>Cerrillos</station>
     </line>
-    <line name="TEST" color="#A53CEB">
-        <station>station 1</station>
-        <station>station 2</station>
-        <station>station 3</station>
-        <station>station 4</station>
-    </line>
-
 </metro>
