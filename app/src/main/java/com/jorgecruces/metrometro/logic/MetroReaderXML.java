@@ -77,13 +77,4 @@ public class MetroReaderXML {
         }
         return metro;
     }
-
-    public String getMetroName(String filename) {
-        return "name";
-    }
-
-    public Metro getMetro() {
-        return new Metro();
-    }
-
 }

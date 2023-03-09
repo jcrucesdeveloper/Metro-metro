@@ -1,32 +1,32 @@
 <metro name="Metro de Santiago">
     <line name="Linea 1" color="#F32727">
         <station>San Pablo</station>
-        <station number="2">Neptuno</station>
-        <station number="3">Pajaritos</station>
-        <station number="4">Las Rejas</station>
-        <station number="5">Ecuador</station>
-        <station number="6">San Alberto Hurtado</station>
-        <station number="7">Universidad de Santiago de Chile</station>
-        <station number="8">Estacion Central</station>
-        <station number="9">Union Latinoamericana</station>
-        <station number="10">Republica</station>
-        <station number="10">Los Heroes</station>
-        <station number="10">La Moneda</station>
-        <station number="10">Universidad de Chile</station>
-        <station number="10">Santa Lucia</station>
-        <station number="10">Universidad Catolica</station>
-        <station number="10">Baquedano</station>
-        <station number="10">Salvador</station>
-        <station number="10">Manuel Montt</station>
-        <station number="10">Pedro de Valdivia</station>
-        <station number="10">Los Leones</station>
-        <station number="10">Tobalaba</station>
-        <station number="10">El Golf</station>
-        <station number="10">Alcantara</station>
-        <station number="10">Escuela Militar</station>
-        <station number="10">Manquehue</station>
-        <station number="10">Hernando de Magallanes</station>
-        <station number="10">Los Dominicos</station>
+        <station>Neptuno</station>
+        <station>Pajaritos</station>
+        <station>Las Rejas</station>
+        <station>Ecuador</station>
+        <station>San Alberto Hurtado</station>
+        <station>Universidad de Santiago</station>
+        <station>Estación Central</station>
+        <station>Unión Latinoamericana</station>
+        <station>República</station>
+        <station>Los Héroes</station>
+        <station>La Moneda</station>
+        <station>Universidad de Chile</station>
+        <station>Santa Lucía</station>
+        <station>Universidad Católica</station>
+        <station>Baquedano</station>
+        <station>Salvador</station>
+        <station>Manuel Montt</station>
+        <station>Pedro de Valdivia</station>
+        <station>Los Leones</station>
+        <station>Tobalaba</station>
+        <station>El Golf</station>
+        <station>Alcántara</station>
+        <station>Escuela Militar</station>
+        <station>Manquehue</station>
+        <station>Hernando de Magallanes</station>
+        <station>Los Dominicos</station>
     </line>
     <line name="Linea 2" color="#FFD64B">
         <station>Vespucio Norte</station>
@@ -38,32 +38,33 @@
         <station>Patronato</station>
         <station>Puente Cal y Canto</station>
         <station>Santa Ana</station>
-        <station>Los Heroes</station>
+        <station>Los Héroes</station>
         <station>Toesca</station>
         <station>Parque O'Higgins</station>
         <station>Rondizzoni</station>
         <station>Franklin</station>
-        <station>El LLano</station>
+        <station>El Llano</station>
         <station>San Miguel</station>
         <station>Lo vial</station>
         <station>Departamental</station>
         <station>Ciudad del niño</station>
         <station>Lo Ovalle</station>
+        <station>El Parrón</station>
         <station>La Cisterna</station>
     </line>
     <line name="Linea 3" color="#C06616">
         <station>Los Libertadores</station>
         <station>Cardenal Caro</station>
         <station>Vivaceta</station>
-        <station>Conchali</station>
+        <station>Conchalí</station>
         <station>Plaza Chacabuco</station>
         <station>Hospitales</station>
         <station>Puente Cal y Canto</station>
         <station>Plaza de Armas</station>
-        <station>U. de Chile</station>
+        <station>Universidad de Chile</station>
         <station>Parque Almagro</station>
         <station>Matta</station>
-        <station>Irarrazaval</station>
+        <station>Irarrázaval</station>
         <station>Monseñor Eyzaguirre</station>
         <station>Ñuñoa</station>
         <station>Chile España</station>
@@ -71,34 +72,41 @@
         <station>Plaza Egaña</station>
         <station>Fernando Castillo Velasco</station>
     </line>
-
     <line name="Linea 4" color="#2127CE">
         <station>Tobalaba</station>
-        <station>Cristobal Colon</station>
+        <station>Cristóbal Colón</station>
         <station>Francisco Bilbao</station>
-        <station>Principe de Gales</station>
-        <station>Simon Bolivar</station>
+        <station>Príncipe de Gales</station>
+        <station>Simón Bolívar</station>
         <station>Plaza Egaña</station>
         <station>Los Orientales</station>
         <station>Grecia</station>
         <station>Los Presidentes</station>
-        <station>Quilin</station>
+        <station>Quilín</station>
         <station>Las Torres</station>
         <station>Macul</station>
         <station>Vicuña Mackenna</station>
-        <station>Vicente Valdes</station>
+        <station>Vicente Valdés</station>
         <station>Rojas Magallanes</station>
         <station>Trinidad</station>
-        <station>San Jose de la Estrella</station>
+        <station>San José de la Estrella</station>
         <station>Los Quillayes</station>
         <station>Elisa Correa</station>
-        <station>Hospital Sotero del Rio</station>
+        <station>Hospital Sótero del Río</station>
         <station>Protectora de La Infancia</station>
         <station>Las Mercedes</station>
         <station>Plaza de Puente Alto</station>
     </line>
+    <line name="Linea 4A" color="#0278C0">
+        <station>Vicuña Mackenna</station>
+        <station>Santa Julia</station>
+        <station>La Granja</station>
+        <station>Santa Rosa</station>
+        <station>San Ramón</station>
+        <station>La Cisterna</station>
+    </line>
     <line name="Linea 5" color="#04C43E">
-        <station>Plaza de Maipu</station>
+        <station>Plaza de Maipú</station>
         <station>Santiago Bueras</station>
         <station>Del Sol</station>
         <station>Monte Tabor</station>
@@ -118,26 +126,27 @@
         <station>Baquedano</station>
         <station>Parque Bustamante</station>
         <station>Santa Isabel</station>
+        <station>Irarrázaval</station>
         <station>Ñuble</station>
         <station>Rodrigo de Araya</station>
         <station>Carlos Valdovinos</station>
-        <station>Camino Agricola</station>
-        <station>San Joaquin</station>
+        <station>Camino Agrícola</station>
+        <station>San Joaquín</station>
         <station>Pedrero</station>
         <station>Mirador</station>
         <station>Bellavista de La Florida</station>
-        <station>Vicente Valdes</station>
+        <station>Vicente Valdés</station>
     </line>
     <line name="Linea 6" color="#A53CEB">
-        <station>Los Leones</station>
-        <station>Ines de Suarez</station>
-        <station>Ñuñoa</station>
-        <station>Estadio Nacional</station>
-        <station>Ñuble</station>
-        <station>Bio Bio</station>
-        <station>Franklin</station>
-        <station>Presidente Pedro Aguirre Cerdac</station>
-        <station>Lo valledor</station>
         <station>Cerrillos</station>
+        <station>Lo Valledor</station>
+        <station>Presidente Pedro Aguirre Cerda</station>
+        <station>Franklin</station>
+        <station>Bío Bío</station>
+        <station>Ñuble</station>
+        <station>Estadio Nacional</station>
+        <station>Ñuñoa</station>
+        <station>Inés de Suárez</station>
+        <station>Los Leones</station>
     </line>
 </metro>

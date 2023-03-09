@@ -18,9 +18,6 @@ public class Metro {
         return lines;
     }
 
-    public void setLines(ArrayList<Line> lines) {
-        this.lines = lines;
-    }
 
     public void addLine(Line line) {
             lines.add(line);

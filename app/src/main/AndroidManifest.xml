@@ -24,7 +24,6 @@
             android:name=".activities.MetroInformationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-
             />
 
 
