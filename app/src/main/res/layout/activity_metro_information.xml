@@ -7,23 +7,12 @@
     android:background="@drawable/lines_metro_background"
     tools:context=".activities.MetroInformationActivity">
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"></com.google.android.gms.ads.AdView>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:contentDescription="@string/description_metro_information_scroll"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/titiliumweb_bold"
-        android:text="Mapa del metro (Se puede hacer Zoom)"
+        android:text="@string/description_metro_information"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +40,9 @@
         android:onClick="goToMainActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lines_metro_button_back" />
+        app:srcCompat="@drawable/lines_metro_button_back"
+        android:contentDescription="@string/content_description_go_back_button"
+        />
 
     <com.jorgecruces.metrometro.customViews.ZoomableImageView
         android:id="@+id/metroMap"
@@ -65,7 +56,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle2"
         app:layout_constraintVertical_bias="0.064"
-        app:srcCompat="@drawable/info_metro_image_map" />
+        app:srcCompat="@drawable/info_metro_image_map"
+        tools:ignore="ImageContrastCheck"
+        android:contentDescription="@string/image_metro_santiago"
+        />
 
     <TextView
         android:id="@+id/textViewTitle2"
@@ -77,7 +71,7 @@
         android:background="@drawable/gameplay_background_game_line"
         android:fontFamily="@font/titiliumweb_bold"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Lineas Metro"
+        android:text="@string/metro_lines"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"

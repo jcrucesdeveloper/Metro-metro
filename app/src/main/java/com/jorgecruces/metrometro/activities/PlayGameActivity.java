@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -320,11 +322,19 @@ public class PlayGameActivity extends AppCompatActivity {
             currentTextView.setText(currentStation.getName());
         }
 
+        Animation scaleAnimation = AnimationUtils.loadAnimation(this,R.anim.scale);
+
+
         // OnClickListener
         for (TextView textView: alternativesTextView) {
             String lineName = textView.getText().toString();
-            textView.setOnClickListener(view -> this.checkAlternative(lineName));
+            textView.setOnClickListener(view -> {
+                view.startAnimation(scaleAnimation);
+                this.checkAlternative(lineName);
+            });
         }
+
+
 
     }
 

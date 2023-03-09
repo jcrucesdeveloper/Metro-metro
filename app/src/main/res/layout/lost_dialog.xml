@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/titiliumweb_bold"
         android:padding="20dp"
-        android:text="¡Acabas de perder! :("
+        android:text="@string/lost_dialog_title"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -33,7 +33,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageViewAds"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/main_menu_button_reset" />
+        app:srcCompat="@drawable/main_menu_button_reset"
+        android:contentDescription="@string/lost_dialog_reset_level_button"
+        />
 
     <ImageView
         android:id="@+id/imageViewAds"
@@ -45,7 +47,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewResetLevel"
-        app:srcCompat="@drawable/gameplay_button_ad" />
+        app:srcCompat="@drawable/gameplay_button_ad"
+        android:contentDescription="@string/reset_dialog_ads_button"
+        />
 
     <TextView
         android:id="@+id/textView6"
@@ -54,7 +58,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/titiliumweb_bold"
-        android:text="Continuar"
+        android:text="@string/lost_dialog_continue"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/imageViewAds"
@@ -68,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/titiliumweb_bold"
-        android:text="Reiniciar nivel"
+        android:text="@string/lost_dialog_reset_level"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/imageViewResetLevel"

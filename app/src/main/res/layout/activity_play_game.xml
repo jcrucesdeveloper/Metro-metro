@@ -18,7 +18,7 @@
         app:adUnitId="ca-app-pub-8814283715092277/7449171029"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></com.google.android.gms.ads.AdView>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
@@ -27,7 +27,7 @@
         android:layout_height="61dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="54dp"
-        android:contentDescription="Button"
+        android:contentDescription="@string/content_description_go_back_button"
         android:onClick="goBackToMenu"
         app:layout_constraintEnd_toStartOf="@+id/textViewTitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         android:background="@drawable/gameplay_background_game_line"
         android:fontFamily="@font/titiliumweb_bold"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Lineas Metro"
+        android:text="@string/metro_lines"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
@@ -61,7 +61,7 @@
         android:background="@drawable/gameplay_button_metro_station"
         android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
+        android:text="@string/alternative2"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewAlternative3"
         app:layout_constraintEnd_toStartOf="@+id/textViewAlternative1"
@@ -77,7 +77,7 @@
         android:background="@drawable/gameplay_button_metro_station"
         android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
+        android:text="@string/alternative1"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewAlternative4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +93,7 @@
         android:background="@drawable/gameplay_button_metro_station"
         android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
+        android:text="@string/alternative4"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +109,7 @@
         android:background="@drawable/gameplay_button_metro_station"
         android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
-        android:text="SAN PEDRO"
+        android:text="@string/alternative3"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewAlternative4"
@@ -134,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/titiliumweb_bold"
-            android:text="0"
+            android:text="@string/default_value_current_number_question"
             android:textSize="30sp" />
 
         <TextView
@@ -142,15 +142,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/titiliumweb_bold"
-            android:text="/"
-            android:textSize="30sp" />
+            android:text="@string/separator_current_number_question"
+            android:textSize="30sp"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/textViewMaxPosition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/titiliumweb_bold"
-            android:text="20"
+            android:text="@string/default_max_number_current_number_question"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -167,7 +168,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        android:contentDescription="@string/description_scroll_view_gameplay"
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"

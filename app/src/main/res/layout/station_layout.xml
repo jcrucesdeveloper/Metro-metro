@@ -19,7 +19,9 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginStart="-10dp"
-            app:srcCompat="@drawable/metro_svg" />
+            app:srcCompat="@drawable/metro_svg"
+            android:contentDescription="@string/station_layout_background_metro_color"
+            />
 
         <ImageView
             android:id="@+id/imageView9"
@@ -29,7 +31,9 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             app:srcCompat="@drawable/ic_baseline_circle_24"
-            tools:layout_centerVertical="true" />
+            tools:layout_centerVertical="true"
+            android:contentDescription="@string/station_layout_white_color"
+            />
 
         <ImageView
             android:id="@+id/imageViewForegroundStation"
@@ -42,7 +46,9 @@
             android:layout_toEndOf="@+id/imageView9"
             android:adjustViewBounds="false"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_mediamodifier_design_5_" />
+            app:srcCompat="@drawable/ic_mediamodifier_design_5_"
+            android:contentDescription="@string/station_layout_line_color"
+            />
     </RelativeLayout>
 
     <TextView
@@ -52,7 +58,7 @@
         android:layout_marginStart="0dp"
         android:layout_weight="1"
         android:fontFamily="sans-serif-medium"
-        android:text="TextView"
+        android:text="@string/default_value_station_name"
         android:textAlignment="viewStart"
         android:textSize="26sp" />
 

@@ -13,15 +13,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/titiliumweb_bold"
         android:padding="20dp"
-        android:text="¿Estas seguro que quieres reiniciar? (Perderas todo tu progreso)"
+        android:text="@string/reset_question"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageViewConfirmationDialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonResetConfirmationDialog"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="4dp"
         android:backgroundTint="#FF0000"
         android:fontFamily="@font/titiliumweb_bold"
-        android:text="Reiniciar"
+        android:text="@string/reset_button_reset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonGoBackConfirmationDialog" />
@@ -44,7 +44,7 @@
         android:layout_marginBottom="4dp"
         android:backgroundTint="#6F1AFF00"
         android:fontFamily="@font/titiliumweb_bold"
-        android:text="Volver"
+        android:text="@string/reset_button_go_back"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonResetConfirmationDialog"
@@ -61,6 +61,8 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonResetConfirmationDialog"
         app:layout_constraintStart_toEndOf="@+id/buttonGoBackConfirmationDialog"
         app:layout_constraintTop_toBottomOf="@+id/lostTextView"
-        app:srcCompat="@drawable/confirmation_dialog" />
+        app:srcCompat="@drawable/confirmation_dialog"
+        android:contentDescription="@string/content_description_reset_alert"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

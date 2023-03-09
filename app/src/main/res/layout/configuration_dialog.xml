@@ -15,7 +15,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/titiliumweb_bold"
         android:padding="20dp"
-        android:text="Configuración"
+        android:text="@string/configuration_title"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -32,13 +32,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/titiliumweb_regular"
-        android:text="Musica"
+        android:text="@string/configuration_music"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchSoundConfiguration" />
+        app:layout_constraintTop_toBottomOf="@+id/switchSoundConfiguration"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Switch
         android:id="@+id/switchSoundConfiguration"
@@ -46,12 +47,13 @@
         android:layout_height="75dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/titiliumweb_regular"
-        android:text="Sonido"
+        android:text="@string/configuration_sound"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lostTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/lostTextView"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <ImageView
         android:id="@+id/goBackButtonConfiguration"
@@ -64,6 +66,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lines_metro_button_back" />
+        app:srcCompat="@drawable/lines_metro_button_back"
+        android:contentDescription="@string/content_description_go_back_button"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

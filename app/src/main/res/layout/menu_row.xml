@@ -30,12 +30,13 @@
 
             <ImageView
                 android:id="@+id/backgroundMetroMenu"
-                android:layout_width="300px"
-                android:layout_height="300px"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/metro_svg" />
+                app:srcCompat="@drawable/metro_svg"
+                android:contentDescription="@string/menu_row_metro_color"
+                />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -43,8 +44,9 @@
                 android:layout_height="78dp"
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_circle_24" />
+                app:srcCompat="@drawable/ic_baseline_circle_24"
+                android:contentDescription="@string/menu_row_background_color"
+                />
 
         </RelativeLayout>
 
@@ -53,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="46dp"
             android:fontFamily="@font/titiliumweb_bold"
-            android:text="Linea 1"
+            android:text="@string/menu_row_default_value"
             android:textColor="#2C0453"
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +73,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/lines_metro_star"
-            app:tint="#939393" />
+            app:tint="#939393"
+            android:contentDescription="@string/menu_row_star_description"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

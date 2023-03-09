@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"></com.google.android.gms.ads.AdView>
+        tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menuMetroRecyclerView"
@@ -28,8 +28,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLineMenuTitle">
-
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLineMenuTitle"
+        >
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
@@ -44,9 +44,9 @@
         android:elevation="3dp"
         android:fontFamily="@font/titiliumweb_bold"
         android:gravity="center_horizontal|center_vertical"
-        android:text="0"
+        android:text="@string/default_value_score_star_view"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#6D4C41"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/menuMetroRecyclerView"
@@ -62,7 +62,9 @@
         app:layout_constraintEnd_toStartOf="@+id/scoreStarView"
         app:layout_constraintStart_toEndOf="@+id/imageViewButtonBack"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lines_metro_title" />
+        app:srcCompat="@drawable/lines_metro_title"
+        android:contentDescription="@string/content_description_title_menu"
+        />
 
     <ImageView
         android:id="@+id/imageViewButtonBack"
@@ -75,6 +77,8 @@
         app:layout_constraintEnd_toStartOf="@+id/imageViewLineMenuTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lines_metro_button_back" />
+        app:srcCompat="@drawable/lines_metro_button_back"
+        android:contentDescription="@string/content_description_go_back_button"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
