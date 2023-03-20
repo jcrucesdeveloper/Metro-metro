@@ -43,4 +43,6 @@
     <string name="winning_dialog_title">¡Felicidades, ganaste una estrella!</string>
     <string name="winning_dialog_go_to_menu">Ir al menu</string>
     <string name="winning_dialog_star_description">Estrella ganada por completar el nivel</string>
+    <string name="rate_it_text">¿Estas disfrutando Metro Metro? Ayudanos con una Review</string>
+    <string name="dejar_una_review">Dejar una Review!</string>
 </resources>

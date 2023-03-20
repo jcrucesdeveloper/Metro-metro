@@ -5,11 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.jorgecruces.metrometro.R;
@@ -57,8 +60,35 @@ public class MenuMetroActivity extends AppCompatActivity {
         MenuMetroRecyclerViewAdapter adapter = new MenuMetroRecyclerViewAdapter(this,this.metroMenu);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        this.checkIfShowRateItDialog();
         super.onResume();
     }
+
+    private void checkIfShowRateItDialog() {
+        Intent intent = getIntent();
+        if (intent.getBooleanExtra("RateIt",false)) {
+            this.showRateItDialog();
+        }
+    }
+
+    public void showRateItDialog() {
+
+        // Show dialog
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.rate_app_dialog);
+
+        Button buttonRateIt = dialog.findViewById(R.id.buttonRateIt);
+        buttonRateIt.setOnClickListener(view -> this.goToStore());
+
+        // Reset Shared Preferences
+        dialog.show();
+    }
+
+    public void goToStore() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.jorgecruces.metrometro"));
+        startActivity(intent);
+    }
+
 
     public void initializeMetroMenuData() {
         MetroReaderXML metroReaderXML = new MetroReaderXML(this);

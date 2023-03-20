@@ -411,6 +411,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
         winningButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, MenuMetroActivity.class);
+            intent.putExtra("RateIt",true);
             startActivity(intent);
         });
         winningDialog.show();
