@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lines_metro_background"
+    android:background="@drawable/background"
     tools:context=".activities.MenuMetroActivity">
 
     <com.google.android.gms.ads.AdView

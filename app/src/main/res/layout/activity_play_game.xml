@@ -5,7 +5,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lines_metro_background"
+    android:background="@drawable/gameplay_background"
     tools:context=".activities.PlayGameActivity">
 
     <com.google.android.gms.ads.AdView
@@ -25,31 +25,13 @@
         android:id="@+id/imageView"
         android:layout_width="72dp"
         android:layout_height="61dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="54dp"
         android:contentDescription="@string/content_description_go_back_button"
         android:onClick="goBackToMenu"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lines_metro_button_back" />
-
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/gameplay_background_game_line"
-        android:fontFamily="@font/titiliumweb_bold"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/metro_lines"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -161,16 +143,14 @@
         android:layout_height="0dp"
         android:layout_margin="15dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/gameplay_container"
+        android:contentDescription="@string/description_scroll_view_gameplay"
         android:padding="3dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-        android:contentDescription="@string/description_scroll_view_gameplay"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/progressBar2">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -185,5 +165,35 @@
             </RelativeLayout>
         </LinearLayout>
     </HorizontalScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="120dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:minWidth="50dp"
+        android:progress="50"
+        app:layout_constraintBottom_toTopOf="@+id/mainScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/heveltica_bold"
+        android:text="Linea 2"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.843" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

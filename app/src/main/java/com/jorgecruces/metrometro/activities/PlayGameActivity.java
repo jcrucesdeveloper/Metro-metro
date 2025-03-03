@@ -214,10 +214,8 @@ public class PlayGameActivity extends AppCompatActivity {
      * - StationSizeTextView
      */
     private void initializeLevelViews() {
-        TextView levelTitleTextView = findViewById(R.id.textViewTitle);
         TextView stationSizeTextView = findViewById(R.id.textViewMaxPosition);
 
-        levelTitleTextView.setText(this.lineName);
         stationSizeTextView.setText(String.valueOf(this.stationsSize));
     }
 

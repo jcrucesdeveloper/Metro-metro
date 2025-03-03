@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_menu_background"
+    android:background="@drawable/background"
     tools:context=".activities.MainActivity">
 
     <ImageView
@@ -24,56 +24,54 @@
         android:id="@+id/imageViewButtonPlay"
         android:layout_width="300dp"
         android:layout_height="130dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/content_description_button_play"
         android:onClick="goToLinesMenuActivity"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewLogo"
-        app:srcCompat="@drawable/main_menu_button_play"
-        android:contentDescription="@string/content_description_button_play"
-        />
+        app:srcCompat="@drawable/main_menu_button_play" />
 
     <ImageView
         android:id="@+id/imageViewButtonInformation"
         android:layout_width="104dp"
         android:layout_height="97dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="-16dp"
+        android:contentDescription="@string/content_description_button_information"
         android:onClick="goToMetroInfoActivity"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewButtonReset"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewButtonPlay"
-        app:srcCompat="@drawable/main_menu_button_information"
-        android:contentDescription="@string/content_description_button_information"
-        />
+        app:srcCompat="@drawable/main_menu_button_information" />
 
     <ImageView
         android:id="@+id/imageViewButtonReset"
         android:layout_width="95dp"
         android:layout_height="95dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="-16dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/content_description_button_reset"
         android:onClick="showConfirmationResetDialog"
         app:layout_constraintEnd_toStartOf="@+id/imageViewButtonConfiguration"
         app:layout_constraintStart_toEndOf="@+id/imageViewButtonInformation"
         app:layout_constraintTop_toBottomOf="@+id/imageViewButtonPlay"
-        app:srcCompat="@drawable/main_menu_button_reset"
-        android:contentDescription="@string/content_description_button_reset"
-        />
+        app:srcCompat="@drawable/main_menu_button_reset" />
 
     <ImageView
         android:id="@+id/imageViewButtonConfiguration"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_marginTop="-16dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="64dp"
+        android:contentDescription="@string/content_description_button_configuration"
         android:onClick="showConfigurationDialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewButtonReset"
         app:layout_constraintTop_toBottomOf="@+id/imageViewButtonPlay"
-        app:srcCompat="@drawable/main_menu_configuration"
-        android:contentDescription="@string/content_description_button_configuration"
-         />
+        app:srcCompat="@drawable/main_menu_configuration" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
