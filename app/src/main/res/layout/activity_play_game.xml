@@ -24,7 +24,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="72dp"
-        android:layout_height="61dp"
+        android:layout_height="42dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="54dp"
         android:contentDescription="@string/content_description_go_back_button"
@@ -41,9 +41,10 @@
         android:layout_marginStart="48dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/gameplay_button_metro_station"
-        android:fontFamily="@font/titiliumweb_regular"
+        android:fontFamily="@font/heveltica"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/alternative2"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewAlternative3"
         app:layout_constraintEnd_toStartOf="@+id/textViewAlternative1"
@@ -57,9 +58,10 @@
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/gameplay_button_metro_station"
-        android:fontFamily="@font/titiliumweb_regular"
+        android:fontFamily="@font/heveltica"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/alternative1"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewAlternative4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +78,7 @@
         android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/alternative4"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,6 +95,7 @@
         android:fontFamily="@font/titiliumweb_regular"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/alternative3"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewAlternative4"
@@ -117,6 +121,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/titiliumweb_bold"
             android:text="@string/default_value_current_number_question"
+            android:textColor="@color/black"
             android:textSize="30sp" />
 
         <TextView
@@ -125,6 +130,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/titiliumweb_bold"
             android:text="@string/separator_current_number_question"
+            android:textColor="@color/black"
             android:textSize="30sp"
             tools:ignore="TextContrastCheck" />
 
@@ -134,6 +140,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/titiliumweb_bold"
             android:text="@string/default_max_number_current_number_question"
+            android:textColor="@color/black"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -167,7 +174,7 @@
     </HorizontalScrollView>
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/timeLeftProgressBar"
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
         android:layout_width="300dp"
         android:layout_height="30dp"
