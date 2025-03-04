@@ -11,7 +11,6 @@ import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Animation;
@@ -66,9 +65,9 @@ public class PlayGameActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private int timeRemaining = 25; // Default value: 25 seconds
     private static final int TIME_INTERVAL = 100; // Interval in milliseconds (0.1 second for smoother animation)
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
     private Runnable timeRunnable;
-    private float decrementValue = 0.1f; // Amount to decrement each interval for smooth animation
+    private final float decrementValue = 0.1f; // Amount to decrement each interval for smooth animation
     private float currentProgress;
 
     // Music
@@ -77,11 +76,10 @@ public class PlayGameActivity extends AppCompatActivity {
 
     // Ads
     private AdRequest adRequest;
-    private AdView mAdView;
     private RewardedAd rewardedAd;
 
     // Add this flag for local testing
-    private boolean isTestMode = true; // Set to true for local testing, false for production
+    private final boolean isTestMode = false; // Set to true for local testing, false for production
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +141,7 @@ public class PlayGameActivity extends AppCompatActivity {
             }
         });
 
-        mAdView = findViewById(R.id.adViewGameplay);
+        AdView mAdView = findViewById(R.id.adViewGameplay);
         mAdView.loadAd(adRequest);
         // Bonus Interstitial
         this.loadInterstitial(adRequest);

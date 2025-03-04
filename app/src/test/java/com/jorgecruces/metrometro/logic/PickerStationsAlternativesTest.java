@@ -3,15 +3,11 @@ package com.jorgecruces.metrometro.logic;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
-import android.util.Log;
 
-import com.jorgecruces.metrometro.logger.LoggerSout;
 import com.jorgecruces.metrometro.model.Station;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class PickerStationsAlternativesTest {
 
