@@ -80,6 +80,8 @@ public class PlayGameActivity extends AppCompatActivity {
     private AdView mAdView;
     private RewardedAd rewardedAd;
 
+    // Add this flag for local testing
+    private boolean isTestMode = true; // Set to true for local testing, false for production
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -486,6 +488,8 @@ public class PlayGameActivity extends AppCompatActivity {
     private void onLostLevel() {
         // Stop Gameplay Music
         this.stopMusicGameplay();
+        // Stop the timer
+        this.stopTimer();
         MediaPlayerReproducer.getInstance().reproduceLostSound(this);
 
         Dialog lostDialog = new Dialog(this);
@@ -509,7 +513,20 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void showAds(Dialog lostDialog) {
-        if (rewardedAd != null) {
+        if (isTestMode) {
+            // Simulate ad viewing in test mode
+            new Handler().postDelayed(() -> {
+                // Simulate ad completion after 1 second
+                lostDialog.dismiss();
+                // Restart timer and continue the game
+                restartTimer();
+                // Resume gameplay music if it was enabled
+                if (!isReproducingGameplayMusic && MediaPlayerReproducer.getInstance().getMusicBoolean()) {
+                    reproduceMusic();
+                }
+                Toast.makeText(this, "Test Mode: Ad simulation completed", Toast.LENGTH_SHORT).show();
+            }, 1000);
+        } else if (rewardedAd != null) {
             rewardedAd.show(this, new OnUserEarnedRewardListener() {
                 @Override
                 public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
@@ -524,6 +541,8 @@ public class PlayGameActivity extends AppCompatActivity {
                     }
                 }
             });
+        } else {
+            Toast.makeText(this, "No ad available", Toast.LENGTH_SHORT).show();
         }
     }
 
