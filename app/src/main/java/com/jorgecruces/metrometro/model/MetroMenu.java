@@ -1,8 +1,8 @@
 package com.jorgecruces.metrometro.model;
 
 public class MetroMenu {
-    private String metroName;
-    private String color;
+    private final String metroName;
+    private final String color;
 
     private boolean levelStar;
 

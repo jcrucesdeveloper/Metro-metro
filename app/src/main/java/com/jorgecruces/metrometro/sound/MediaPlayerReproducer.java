@@ -9,6 +9,7 @@ import com.jorgecruces.metrometro.R;
 
 /**
  * Singleton class that works as a general Audio Manager
+ * @noinspection CallToPrintStackTrace
  */
 public class MediaPlayerReproducer {
 
@@ -117,6 +118,7 @@ public class MediaPlayerReproducer {
             mp.start();
         } catch (IllegalStateException e)
         {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
         }
     }

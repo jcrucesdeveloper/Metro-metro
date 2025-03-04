@@ -13,10 +13,7 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/description_metro_information_scroll"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+
     </ScrollView>
 
     <TextView

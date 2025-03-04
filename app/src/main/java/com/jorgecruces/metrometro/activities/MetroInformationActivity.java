@@ -15,13 +15,11 @@ import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
 
 public class MetroInformationActivity extends AppCompatActivity {
 
-    private ZoomableImageView imageView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metro_information);
-        imageView=findViewById(R.id.metroMap);
+        ZoomableImageView imageView = findViewById(R.id.metroMap);
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.info_metro_image_map);
         imageView.setImageBitmap(bm);
     }

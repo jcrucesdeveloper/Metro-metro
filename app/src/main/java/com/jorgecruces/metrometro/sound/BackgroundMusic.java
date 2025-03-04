@@ -2,7 +2,6 @@ package com.jorgecruces.metrometro.sound;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.util.Log;
 
 import com.jorgecruces.metrometro.R;
 

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Metro {
     private String name;
-    private ArrayList<Line> lines;
+    private final ArrayList<Line> lines;
 
     public Metro() {
-        lines = new ArrayList<Line>();
+        lines = new ArrayList<>();
     }
 
     public String getName() {

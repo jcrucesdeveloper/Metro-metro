@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Line {
     private String name;
-    private String color;
-    private ArrayList<Station> stations;
+    private final String color;
+    private final ArrayList<Station> stations;
 
     public Line(String name,String color) {
         stations = new ArrayList<>();

@@ -45,4 +45,8 @@
     <string name="winning_dialog_star_description">Estrella ganada por completar el nivel</string>
     <string name="rate_it_text">¿Estas disfrutando Metro Metro? Ayudanos con una Review</string>
     <string name="dejar_una_review">Dejar una Review!</string>
+    <string name="logo_metro_metro">Logo Metro Metro</string>
+    <string name="star">Star</string>
+    <string name="lineas_metro">Lineas Metro</string>
+    <string name="line_name">Linea X</string>
 </resources>

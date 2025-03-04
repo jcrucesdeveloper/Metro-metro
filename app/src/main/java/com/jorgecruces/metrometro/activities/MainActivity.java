@@ -30,7 +30,6 @@ import com.jorgecruces.metrometro.sound.MediaPlayerReproducer;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageViewMenuLogo;
-    private AdView mAdView;
 
 
     @Override
@@ -44,13 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadAds() {
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
+        MobileAds.initialize(this, initializationStatus -> {
         });
 
-        mAdView = findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
@@ -103,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     public void resetSharedPreferences() {
         SharedPreferences sharedPref = this.getSharedPreferences(
                 String.valueOf(R.string.app_name), Context.MODE_PRIVATE);
-        sharedPref.edit().clear().commit();
+        sharedPref.edit().clear().apply();
         Toast.makeText(this, "Juego Reiniciado", Toast.LENGTH_SHORT).show();
     }
 
@@ -122,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Switch
         @SuppressLint("UseSwitchCompatOrMaterialCode")
-        Switch switchSoundConfiguration = (Switch) dialog.findViewById(R.id.switchSoundConfiguration);
+        Switch switchSoundConfiguration = dialog.findViewById(R.id.switchSoundConfiguration);
         @SuppressLint("UseSwitchCompatOrMaterialCode")
-        Switch switchMusicConfiguration = (Switch) dialog.findViewById(R.id.switchMusicConfiguration);
+        Switch switchMusicConfiguration = dialog.findViewById(R.id.switchMusicConfiguration);
 
         boolean isAudioOn = MediaPlayerReproducer.getInstance().getAudioBoolean();
         boolean isMusicOn = MediaPlayerReproducer.getInstance().getMusicBoolean();
@@ -151,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // ImageView
-        ImageView goBackImageView = (ImageView) dialog.findViewById(R.id.goBackButtonConfiguration);
+        ImageView goBackImageView = dialog.findViewById(R.id.goBackButtonConfiguration);
         goBackImageView.setOnClickListener(imageView -> {
             MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             dialog.dismiss();
@@ -168,9 +164,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         // goBackButton
-        Button buttonGoBack = (Button) dialog.findViewById(R.id.buttonGoBackConfirmationDialog);
+        Button buttonGoBack = dialog.findViewById(R.id.buttonGoBackConfirmationDialog);
         // Reset SharedPreferences
-        Button buttonResetSharedPreferences = (Button) dialog.findViewById(R.id.buttonResetConfirmationDialog);
+        Button buttonResetSharedPreferences = dialog.findViewById(R.id.buttonResetConfirmationDialog);
 
 
         buttonGoBack.setOnClickListener(button -> {

@@ -78,9 +78,6 @@ public class PlayGameActivity extends AppCompatActivity {
     private AdRequest adRequest;
     private RewardedAd rewardedAd;
 
-    // Add this flag for local testing
-    private final boolean isTestMode = false; // Set to true for local testing, false for production
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,10 +132,7 @@ public class PlayGameActivity extends AppCompatActivity {
         adRequest = new AdRequest.Builder().build();
 
         // Banner
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
+        MobileAds.initialize(this, initializationStatus -> {
         });
 
         AdView mAdView = findViewById(R.id.adViewGameplay);
@@ -308,14 +302,9 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void scrollView() {
-        HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.mainScrollView);
+        HorizontalScrollView scrollView = findViewById(R.id.mainScrollView);
         scrollView.setSmoothScrollingEnabled(true);
-        scrollView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                scrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-            }
-        }, 100);
+        scrollView.postDelayed(() -> scrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT), 100);
     }
 
     private void setStationView(int position) {
@@ -447,7 +436,7 @@ public class PlayGameActivity extends AppCompatActivity {
             }
             // Star
             editor.putBoolean(this.lineName,true);
-            editor.commit();
+            editor.apply();
         }
     }
 
@@ -459,7 +448,7 @@ public class PlayGameActivity extends AppCompatActivity {
         winningDialog.setContentView(R.layout.winning_dialog);
 
         // Button
-        Button winningButton = (Button) winningDialog.findViewById(R.id.buttonResetConfirmationDialog);
+        Button winningButton = winningDialog.findViewById(R.id.buttonResetConfirmationDialog);
 
         winningButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, MenuMetroActivity.class);
@@ -495,22 +484,23 @@ public class PlayGameActivity extends AppCompatActivity {
         lostDialog.setCanceledOnTouchOutside(false);
         lostDialog.setContentView(R.layout.lost_dialog);
 
-        ImageView resetLevelImageView = (ImageView) lostDialog.findViewById(R.id.imageViewResetLevel);
-        ImageView imageViewAds = (ImageView) lostDialog.findViewById(R.id.imageViewAds);
+        ImageView resetLevelImageView = lostDialog.findViewById(R.id.imageViewResetLevel);
+        ImageView imageViewAds = lostDialog.findViewById(R.id.imageViewAds);
 
         resetLevelImageView.setOnClickListener(listener-> {
             MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             this.resetLevel();
         });
 
-        imageViewAds.setOnClickListener(listener -> {
-            this.showAds(lostDialog);
-        });
+        imageViewAds.setOnClickListener(listener -> this.showAds(lostDialog));
 
         lostDialog.show();
     }
 
     private void showAds(Dialog lostDialog) {
+        // Add this flag for local testing
+        // Set to true for local testing, false for production
+        boolean isTestMode = false;
         if (isTestMode) {
             // Simulate ad viewing in test mode
             new Handler().postDelayed(() -> {
@@ -525,18 +515,15 @@ public class PlayGameActivity extends AppCompatActivity {
                 Toast.makeText(this, "Test Mode: Ad simulation completed", Toast.LENGTH_SHORT).show();
             }, 1000);
         } else if (rewardedAd != null) {
-            rewardedAd.show(this, new OnUserEarnedRewardListener() {
-                @Override
-                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                    // Handle the reward.
-                    lostDialog.dismiss();
-                    loadInterstitial(adRequest);
-                    // Restart timer and continue the game
-                    restartTimer();
-                    // Resume gameplay music if it was enabled
-                    if (!isReproducingGameplayMusic && MediaPlayerReproducer.getInstance().getMusicBoolean()) {
-                        reproduceMusic();
-                    }
+            rewardedAd.show(this, rewardItem -> {
+                // Handle the reward.
+                lostDialog.dismiss();
+                loadInterstitial(adRequest);
+                // Restart timer and continue the game
+                restartTimer();
+                // Resume gameplay music if it was enabled
+                if (!isReproducingGameplayMusic && MediaPlayerReproducer.getInstance().getMusicBoolean()) {
+                    reproduceMusic();
                 }
             });
         } else {

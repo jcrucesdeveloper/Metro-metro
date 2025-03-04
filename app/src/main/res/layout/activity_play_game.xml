@@ -196,7 +196,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/heveltica_bold"
-        android:text="Linea 2"
+        android:text="@string/line_name"
         android:textColor="@color/black"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/timeLeftProgressBar"

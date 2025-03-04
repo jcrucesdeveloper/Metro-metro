@@ -28,7 +28,6 @@ import java.util.ArrayList;
 public class MenuMetroActivity extends AppCompatActivity {
 
     ArrayList<MetroMenu> metroMenu;
-    private Metro metro;
     private TextView scoreStarView;
 
     @SuppressLint("MissingInflatedId")
@@ -92,7 +91,7 @@ public class MenuMetroActivity extends AppCompatActivity {
 
     public void initializeMetroMenuData() {
         MetroReaderXML metroReaderXML = new MetroReaderXML(this);
-        metro = metroReaderXML.createMetro();
+        Metro metro = metroReaderXML.createMetro();
 
         ArrayList<Line> lines = metro.getLines();
         for (Line line : lines ) {

@@ -13,9 +13,6 @@ public class PickerStationsAlternative {
      * - It returns 3 alternatives
      * - It does not include the correct alternative
      *
-     * @param stations
-     * @param position
-     * @return
      */
     public ArrayList<Station> getAlternatives(ArrayList<Station> stations, int position) {
 
@@ -81,8 +78,6 @@ public class PickerStationsAlternative {
 
     /**
      *
-     * @param stations
-     * @param station
      */
     private void filterStationSameType(ArrayList<Station> stations, Station station) {
 

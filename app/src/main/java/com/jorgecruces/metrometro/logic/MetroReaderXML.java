@@ -2,6 +2,8 @@ package com.jorgecruces.metrometro.logic;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.jorgecruces.metrometro.model.Line;
 import com.jorgecruces.metrometro.model.Metro;
 import com.jorgecruces.metrometro.model.Station;
@@ -22,7 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class MetroReaderXML {
 
-    private Context context;
+    private final Context context;
 
     public MetroReaderXML(Context context) {
         this.context = context;
@@ -49,25 +51,7 @@ public class MetroReaderXML {
             for (int i = 0; i < nList.getLength(); i++) {
 
                 Node lineNode =  nList.item(i);
-                Element lineElement = (Element) lineNode;
-
-                String lineName = lineElement.getAttribute("name");
-                String lineColor = lineElement.getAttribute("color");
-
-
-                NodeList stations  = lineNode.getChildNodes();
-                Line tempLine = new Line(lineName,lineColor);
-
-                for (int j = 0; j < stations.getLength(); j++) {
-                    Node stationNode = stations.item(j);
-                    if (stationNode.getNodeType() == Node.ELEMENT_NODE) {
-                        Node stationNodeFirstChild = stationNode.getFirstChild();
-                        String nameStation = stationNodeFirstChild.getNodeValue();
-
-                        Station tempStation = new Station(nameStation);
-                        tempLine.addStation(tempStation);
-                    }
-                }
+                Line tempLine = getLine(lineNode);
                 metro.addLine(tempLine);
             }
 
@@ -76,5 +60,29 @@ public class MetroReaderXML {
             e.printStackTrace();
         }
         return metro;
+    }
+
+    @NonNull
+    private static Line getLine(Node lineNode) {
+        Element lineElement = (Element) lineNode;
+
+        String lineName = lineElement.getAttribute("name");
+        String lineColor = lineElement.getAttribute("color");
+
+
+        NodeList stations  = lineNode.getChildNodes();
+        Line tempLine = new Line(lineName,lineColor);
+
+        for (int j = 0; j < stations.getLength(); j++) {
+            Node stationNode = stations.item(j);
+            if (stationNode.getNodeType() == Node.ELEMENT_NODE) {
+                Node stationNodeFirstChild = stationNode.getFirstChild();
+                String nameStation = stationNodeFirstChild.getNodeValue();
+
+                Station tempStation = new Station(nameStation);
+                tempLine.addStation(tempStation);
+            }
+        }
+        return tempLine;
     }
 }
