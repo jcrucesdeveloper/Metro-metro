@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +62,15 @@ public class PlayGameActivity extends AppCompatActivity {
     private ArrayList<Station> alternatives;
     private ArrayList<StationView> stationViews;
 
+    // ProgressBar 
+    private ProgressBar progressBar;
+    private int timeRemaining = 25; // Default value: 25 seconds
+    private static final int TIME_INTERVAL = 100; // Interval in milliseconds (0.1 second for smoother animation)
+    private Handler handler = new Handler();
+    private Runnable timeRunnable;
+    private float decrementValue = 0.1f; // Amount to decrement each interval for smooth animation
+    private float currentProgress;
+
     // Music
     private MediaPlayer mediaPlayerGameplayGameplay;
     private boolean isReproducingGameplayMusic = false;
@@ -70,7 +81,6 @@ public class PlayGameActivity extends AppCompatActivity {
     private RewardedAd rewardedAd;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,9 +88,46 @@ public class PlayGameActivity extends AppCompatActivity {
         this.setLineName();
         this.initializeLevelData();
         this.initializeLevelViews();
+        this.initializeProgressBar();
         this.setCurrentStationQuestion(this.position);
         this.drawStationView(150, this.currentStationName, this.lineColorHex);
         this.loadAds();
+    }
+
+    private void initializeProgressBar() {
+        progressBar = findViewById(R.id.timeLeftProgressBar);
+        timeRemaining = this.stations.size() * 2;
+        progressBar.setMax(timeRemaining * 10); // Multiply by 10 for smoother animation
+        currentProgress = timeRemaining * 10; // Initialize current progress
+        progressBar.setProgress((int)currentProgress); // Set the initial value
+        this.startProgressBarTimer();
+    }
+
+    private void startProgressBarTimer() {
+        timeRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (currentProgress > 0) {
+                    currentProgress -= decrementValue * 10; // Decrease smoothly
+                    progressBar.setProgress((int)currentProgress); // Update ProgressBar
+                    handler.postDelayed(this, TIME_INTERVAL); // Repeat every interval
+                } else {
+                    // Time out: lose level
+                    onTimeOut();
+                }
+            }
+        };
+        handler.post(timeRunnable); // Start the timer
+    }
+
+    private void stopTimer() {
+        if (handler != null && timeRunnable != null) {
+            handler.removeCallbacks(timeRunnable);
+        }
+    }
+    private void onTimeOut() {
+        stopTimer(); // Stop the timer
+        onLostLevel(); // Call the existing method to lose the level
     }
 
 
@@ -126,6 +173,7 @@ public class PlayGameActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         this.stopMusic();
+        this.stopTimer();
     }
 
     private void drawStationView(float marginStart, String stationName, String colorHex) {
@@ -192,7 +240,12 @@ public class PlayGameActivity extends AppCompatActivity {
             throw new Error("Hubo un problema al iniciar el level");
         }
         this.lineName = extra.getString("LINEA");
-        Log.d("LINE NAME", this.lineName);
+        
+        // Set the line name in the TextView
+        TextView lineNameTextView = findViewById(R.id.lineName);
+        if (lineNameTextView != null) {
+            lineNameTextView.setText(this.lineName);
+        }
     }
 
     /**
@@ -366,6 +419,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     public void onWinLevel() {
         this.stopMusicGameplay();
+        this.stopTimer(); 
         // Reproduce win sound
         MediaPlayerReproducer.getInstance().reproduceSoundWinLevel(this);
         this.updateProgressInfo();
@@ -462,9 +516,25 @@ public class PlayGameActivity extends AppCompatActivity {
                     // Handle the reward.
                     lostDialog.dismiss();
                     loadInterstitial(adRequest);
+                    // Restart timer and continue the game
+                    restartTimer();
+                    // Resume gameplay music if it was enabled
+                    if (!isReproducingGameplayMusic && MediaPlayerReproducer.getInstance().getMusicBoolean()) {
+                        reproduceMusic();
+                    }
                 }
             });
         }
+    }
+
+    // Method to restart the timer
+    private void restartTimer() {
+        // Reset progress value
+        currentProgress = timeRemaining * 10;
+        progressBar.setProgress((int)currentProgress);
+        
+        // Start timer again
+        startProgressBarTimer();
     }
 
     public void goBackToMenu(View view) {
