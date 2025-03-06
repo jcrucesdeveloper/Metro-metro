@@ -85,6 +85,7 @@ public class PlayGameActivity extends AppCompatActivity {
         this.setCurrentStationQuestion(this.position);
         this.drawStationView(150, this.currentStationName, this.lineColorHex);
         this.loadAds();
+        this.setupAccessibility();
     }
 
     private void initializeProgressBar() {
@@ -295,6 +296,17 @@ public class PlayGameActivity extends AppCompatActivity {
 
         // StationView
         this.setStationView(position);
+
+        // Actualizar las descripciones de accesibilidad
+        updateAlternativeAccessibilityDescriptions();
+        
+        // Actualizar la descripción del progreso de la pregunta
+        TextView currentNumberQuestion = findViewById(R.id.textViewCurrentNumberQuestion);
+        TextView maxPosition = findViewById(R.id.textViewMaxPosition);
+        String accessibilityText = getString(R.string.accessibility_current_question, 
+                Integer.parseInt(currentNumberQuestion.getText().toString()), 
+                Integer.parseInt(maxPosition.getText().toString()));
+        currentNumberQuestion.setContentDescription(accessibilityText);
     }
 
     private void scrollView() {
@@ -547,6 +559,41 @@ public class PlayGameActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         this.goBackToMenu(null);
+    }
+
+    private void setupAccessibility() {
+        // Configurar descripciones de contenido dinámicas para mejorar la accesibilidad
+        TextView alternative1 = findViewById(R.id.textViewAlternative1);
+        TextView alternative2 = findViewById(R.id.textViewAlternative2);
+        TextView alternative3 = findViewById(R.id.textViewAlternative3);
+        TextView alternative4 = findViewById(R.id.textViewAlternative4);
+        TextView lineNameView = findViewById(R.id.lineName);
+        ProgressBar timeBar = findViewById(R.id.timeLeftProgressBar);
+        
+        // Hacer que los elementos sean focusables para TalkBack
+        alternative1.setFocusable(true);
+        alternative2.setFocusable(true);
+        alternative3.setFocusable(true);
+        alternative4.setFocusable(true);
+        
+        // Configurar descripciones de contenido
+        lineNameView.setContentDescription(getString(R.string.line_name_description) + ": " + lineNameView.getText());
+        timeBar.setContentDescription(getString(R.string.time_progress_bar_description));
+        
+        // Actualizar las descripciones de las alternativas
+        updateAlternativeAccessibilityDescriptions();
+    }
+    
+    private void updateAlternativeAccessibilityDescriptions() {
+        TextView alternative1 = findViewById(R.id.textViewAlternative1);
+        TextView alternative2 = findViewById(R.id.textViewAlternative2);
+        TextView alternative3 = findViewById(R.id.textViewAlternative3);
+        TextView alternative4 = findViewById(R.id.textViewAlternative4);
+        
+        alternative1.setContentDescription(getString(R.string.accessibility_station_name, alternative1.getText()));
+        alternative2.setContentDescription(getString(R.string.accessibility_station_name, alternative2.getText()));
+        alternative3.setContentDescription(getString(R.string.accessibility_station_name, alternative3.getText()));
+        alternative4.setContentDescription(getString(R.string.accessibility_station_name, alternative4.getText()));
     }
 
 }

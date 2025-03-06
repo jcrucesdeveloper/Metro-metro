@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Incluir todas las preferencias compartidas -->
+    <include domain="sharedpref" path="."/>
+    <!-- Excluir archivos específicos si es necesario -->
+    <!-- <exclude domain="sharedpref" path="device.xml"/> -->
+</full-backup-content> 

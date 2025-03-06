@@ -57,9 +57,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_weight="1"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/nimbusans_bold"
         android:text="@string/default_value_station_name"
         android:textAlignment="viewStart"
+        android:textColor="@color/black"
         android:textSize="26sp" />
 
 </LinearLayout>

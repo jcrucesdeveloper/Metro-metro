@@ -49,4 +49,18 @@
     <string name="star">Star</string>
     <string name="lineas_metro">Lineas Metro</string>
     <string name="line_name">Linea X</string>
+    
+    <!-- Nuevos strings para accesibilidad -->
+    <string name="alternative_option_description">Opción de estación de metro</string>
+    <string name="time_progress_bar_description">Barra de progreso del tiempo restante</string>
+    <string name="line_name_description">Nombre de la línea de metro actual</string>
+    <string name="app_description">Juego para aprender las estaciones del Metro de Santiago</string>
+    <string name="accessibility_dialog_title">Título del diálogo</string>
+    <string name="accessibility_dialog_message">Mensaje del diálogo</string>
+    <string name="accessibility_button_accept">Botón aceptar</string>
+    <string name="accessibility_button_cancel">Botón cancelar</string>
+    <string name="accessibility_station_name">Nombre de la estación: %1$s</string>
+    <string name="accessibility_current_question">Pregunta %1$d de %2$d</string>
+    <string name="accessibility_score">Puntuación: %1$d</string>
+    <string name="accessibility_time_remaining">Tiempo restante: %1$d segundos</string>
 </resources>

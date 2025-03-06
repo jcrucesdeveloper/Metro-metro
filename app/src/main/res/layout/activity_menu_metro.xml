@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="@font/heveltica_bold"
+            android:fontFamily="@font/nimbusans_bold"
             android:gravity="center"
             android:text="@string/lineas_metro"
             android:textAlignment="center"

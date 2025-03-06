@@ -13,23 +13,54 @@ android {
         versionName "1.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        // Configuración para soporte de idiomas
+        resConfigs "es"
+        
+        // Vectores dibujables
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            
+            // Configuración para reducir el tamaño del APK
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            }
+        }
+        
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    
     namespace 'com.jorgecruces.metrometro'
+    
+    // Configuración para soporte de diferentes densidades de pantalla
+    bundle {
+        density {
+            enableSplit = true
+        }
+        language {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
 }
 
 dependencies {
-
     implementation 'com.google.android.gms:play-services-ads:24.0.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'

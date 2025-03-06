@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         this.imageViewMenuLogo = findViewById(R.id.imageViewLogo);
         this.animateFadeInButtons();
         this.loadAds();
+        this.setupAccessibility();
     }
 
     private void loadAds() {
@@ -182,5 +183,24 @@ public class MainActivity extends AppCompatActivity {
 
         // Reset Shared Preferences
         dialog.show();
+    }
+
+    private void setupAccessibility() {
+        // Configurar descripciones de contenido dinámicas para mejorar la accesibilidad
+        ImageView playButton = findViewById(R.id.imageViewButtonPlay);
+        ImageView infoButton = findViewById(R.id.imageViewButtonInformation);
+        ImageView resetButton = findViewById(R.id.imageViewButtonReset);
+        ImageView configButton = findViewById(R.id.imageViewButtonConfiguration);
+        
+        playButton.setContentDescription(getString(R.string.content_description_button_play));
+        infoButton.setContentDescription(getString(R.string.content_description_button_information));
+        resetButton.setContentDescription(getString(R.string.content_description_button_reset));
+        configButton.setContentDescription(getString(R.string.content_description_button_configuration));
+        
+        // Hacer que los botones sean focusables para TalkBack
+        playButton.setFocusable(true);
+        infoButton.setFocusable(true);
+        resetButton.setFocusable(true);
+        configButton.setFocusable(true);
     }
 }
