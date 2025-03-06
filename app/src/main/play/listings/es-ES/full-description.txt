@@ -1,22 +1,43 @@
-Metro Metro es un juego educativo diseñado para ayudarte a aprender las estaciones del Metro de Santiago de Chile de manera divertida e interactiva.
+🚇 **METRO METRO: EL JUEGO DEFINITIVO DEL METRO DE SANTIAGO** 🚇
 
-¿Conoces todas las estaciones del Metro de Santiago? ¡Pon a prueba tus conocimientos con Metro Metro!
+¿Conoces todas las estaciones del Metro de Santiago de Chile? ¡Pon a prueba tus conocimientos con Metro Metro, el juego educativo más completo sobre el transporte público de la capital chilena!
 
-CARACTERÍSTICAS:
-• Aprende las estaciones de todas las líneas del Metro de Santiago
-• Juego intuitivo y fácil de usar
-• Desafíos cronometrados para poner a prueba tus conocimientos
+📱 **APRENDE JUGANDO**
+• Memoriza las 136 estaciones de las 7 líneas del Metro de Santiago
+• Desafíos cronometrados para poner a prueba tu conocimiento
 • Sistema de progreso con estrellas para seguir tu avance
-• Información detallada sobre cada línea del metro
-• Interfaz atractiva y moderna
+• Perfecto para estudiantes, turistas y residentes
+
+✨ **CARACTERÍSTICAS PRINCIPALES**
+• Interfaz intuitiva y fácil de usar
+• Diseño moderno inspirado en la señalética oficial del Metro
+• Información detallada sobre cada línea y estación
+• Juego 100% en español
+• Sin conexión a internet necesaria para jugar
 • Optimizado para todos los dispositivos Android
-• Completamente en español
-• Soporte para accesibilidad (TalkBack)
+• Soporte completo para accesibilidad (TalkBack)
 
-Metro Metro es perfecto para:
+🎮 **MODOS DE JUEGO**
+• Modo Aprendizaje: conoce las estaciones a tu ritmo
+• Modo Desafío: pon a prueba tu memoria contra reloj
+• Modo Experto: para verdaderos conocedores del Metro
+
+👨‍👩‍👧‍👦 **PERFECTO PARA**
 • Estudiantes que quieren aprender a moverse por Santiago
-• Turistas que visitan la ciudad
+• Turistas que visitan la ciudad por primera vez
 • Residentes que quieren mejorar su conocimiento del sistema de metro
-• Cualquier persona interesada en aprender sobre el transporte público de Santiago
+• Fanáticos del transporte público y la movilidad urbana
+• Profesores que buscan herramientas educativas sobre la ciudad
 
-¡Descarga Metro Metro ahora y conviértete en un experto del Metro de Santiago! 
+🏆 **BENEFICIOS EDUCATIVOS**
+• Mejora tu orientación espacial en la ciudad
+• Aprende la ubicación de puntos importantes de Santiago
+• Familiarízate con el sistema de transporte público
+• Desarrolla tu memoria y capacidad de reconocimiento
+
+⭐ **ACTUALIZADO REGULARMENTE**
+• Nuevas estaciones cuando se inauguran
+• Mejoras constantes basadas en comentarios de usuarios
+• Contenido adicional en cada actualización
+
+¡Usando Metro Metro ahora y conviértete en un experto del Metro de Santiago de Chile! La forma más divertida de aprender a moverte por la ciudad. 
