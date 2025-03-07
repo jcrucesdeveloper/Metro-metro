@@ -1,4 +1,4 @@
-Versión 1.3:
+Versión 1.5:
 - Mejoras de accesibilidad para todos los usuarios
 - Soporte completo para TalkBack
 - Optimización para diferentes tamaños de pantalla
