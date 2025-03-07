@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Metro metro</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Metro Metro</string>
     <string name="content_description_menu_logo">Logo de la aplicacion</string>
     <string name="content_description_button_play">Boton principal para jugar</string>
     <string name="content_description_button_information">Boton para ver la informacion del Metro</string>
@@ -12,7 +12,7 @@
     <string name="image_metro_santiago">Imagen del Metro de Santiago de Chile</string>
     <string name="metro_lines">Lineas Metro</string>
     <string name="description_metro_information_scroll">Lineas del Metro de Santiago de Chile</string>
-    <string name="alternative1">alternative1</string>
+    <string name="alternative1" tools:ignore="Typos">alternative1</string>
     <string name="alternative2">alternative2</string>
     <string name="alternative3">alternative3</string>
     <string name="alternative4">alternative4</string>
@@ -51,14 +51,14 @@
     <string name="line_name">Linea X</string>
     
     <!-- Nuevos strings para accesibilidad -->
-    <string name="alternative_option_description">Opción de estación de metro</string>
-    <string name="time_progress_bar_description">Barra de progreso del tiempo restante</string>
+    <string name="alternative_option_description">Opción de estación de metro. Toca para seleccionar esta estación.</string>
+    <string name="time_progress_bar_description">Barra de progreso del tiempo restante para responder</string>
     <string name="line_name_description">Nombre de la línea de metro actual</string>
-    <string name="app_description">Juego para aprender las estaciones del Metro de Santiago</string>
-    <string name="accessibility_dialog_title">Título del diálogo</string>
-    <string name="accessibility_dialog_message">Mensaje del diálogo</string>
-    <string name="accessibility_button_accept">Botón aceptar</string>
-    <string name="accessibility_button_cancel">Botón cancelar</string>
+    <string name="app_description">Juego educativo para aprender las estaciones del Metro de Santiago</string>
+    <string name="accessibility_dialog_title">Título del diálogo: %1$s</string>
+    <string name="accessibility_dialog_message">Mensaje del diálogo: %1$s</string>
+    <string name="accessibility_button_accept">Botón aceptar: %1$s</string>
+    <string name="accessibility_button_cancel">Botón cancelar: %1$s</string>
     <string name="accessibility_station_name">Nombre de la estación: %1$s</string>
     <string name="accessibility_current_question">Pregunta %1$d de %2$d</string>
     <string name="accessibility_score">Puntuación: %1$d</string>
