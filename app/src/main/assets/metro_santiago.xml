@@ -53,6 +53,9 @@
         <station>La Cisterna</station>
     </line>
     <line name="Linea 3" color="#C06616">
+        <station>Plaza Quilicura</station>
+        <station>Lo Cruzat</station>
+        <station>Ferrocarril</station>
         <station>Los Libertadores</station>
         <station>Cardenal Caro</station>
         <station>Vivaceta</station>
