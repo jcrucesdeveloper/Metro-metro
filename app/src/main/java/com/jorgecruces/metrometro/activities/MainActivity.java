@@ -36,16 +36,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.loadAds();
         this.imageViewMenuLogo = findViewById(R.id.imageViewLogo);
         this.animateFadeInButtons();
-        this.loadAds();
         this.setupAccessibility();
     }
 
     private void loadAds() {
 
-        MobileAds.initialize(this, initializationStatus -> {
-        });
+        // Initialize ads on the background
+        new Thread(
+            () -> {
+                // Initialize the Google Mobile Ads SDK on a background thread.
+                MobileAds.initialize(this, initializationStatus -> {});
+            })
+            .start();
 
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();

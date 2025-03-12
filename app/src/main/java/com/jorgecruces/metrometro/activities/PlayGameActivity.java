@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 
 import com.google.android.gms.ads.AdRequest;
@@ -78,13 +80,13 @@ public class PlayGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
+        this.loadRewardedAd();
         this.setLineName();
         this.initializeLevelData();
         this.initializeLevelViews();
         this.initializeProgressBar();
         this.setCurrentStationQuestion(this.position);
         this.drawStationView(150, this.currentStationName, this.lineColorHex);
-        this.loadAds();
         this.setupAccessibility();
     }
 
@@ -93,7 +95,7 @@ public class PlayGameActivity extends AppCompatActivity {
         timeRemaining = this.stations.size() * 2;
         progressBar.setMax(timeRemaining * 10); // Multiply by 10 for smoother animation
         currentProgress = timeRemaining * 10; // Initialize current progress
-        progressBar.setProgress((int)currentProgress); // Set the initial value
+        progressBar.setProgress((int) currentProgress); // Set the initial value
         this.startProgressBarTimer();
     }
 
@@ -103,7 +105,7 @@ public class PlayGameActivity extends AppCompatActivity {
             public void run() {
                 if (currentProgress > 0) {
                     currentProgress -= decrementValue * 10; // Decrease smoothly
-                    progressBar.setProgress((int)currentProgress); // Update ProgressBar
+                    progressBar.setProgress((int) currentProgress); // Update ProgressBar
                     handler.postDelayed(this, TIME_INTERVAL); // Repeat every interval
                 } else {
                     // Time out: lose level
@@ -119,27 +121,16 @@ public class PlayGameActivity extends AppCompatActivity {
             handler.removeCallbacks(timeRunnable);
         }
     }
+
     private void onTimeOut() {
         stopTimer(); // Stop the timer
         onLostLevel(); // Call the existing method to lose the level
     }
 
 
-    private void loadAds() {
-        adRequest = new AdRequest.Builder().build();
-
-        // Banner
-        MobileAds.initialize(this, initializationStatus -> {
-        });
-
-        AdView mAdView = findViewById(R.id.adViewGameplay);
-        mAdView.loadAd(adRequest);
-        // Bonus Interstitial
-        this.loadInterstitial(adRequest);
-    }
-
-    private void loadInterstitial(AdRequest adRequest) {
-        RewardedAd.load(this, "ca-app-pub-8814283715092277/4208494666",
+    private void loadRewardedAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        RewardedAd.load(this, "ca-app-pub-2905296254158275/4958341889",
                 adRequest, new RewardedAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
@@ -152,6 +143,7 @@ public class PlayGameActivity extends AppCompatActivity {
                         rewardedAd = ad;
                     }
                 });
+
     }
 
     @Override
@@ -205,9 +197,9 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * Transform Dp value to pixel
+     *
      * @param valueDp dp value that is going to be transformed to pixel
      * @return Pixel value
      */
@@ -231,7 +223,7 @@ public class PlayGameActivity extends AppCompatActivity {
             throw new Error("Hubo un problema al iniciar el level");
         }
         this.lineName = extra.getString("LINEA");
-        
+
         // Set the line name in the TextView
         TextView lineNameTextView = findViewById(R.id.lineName);
         if (lineNameTextView != null) {
@@ -267,7 +259,7 @@ public class PlayGameActivity extends AppCompatActivity {
         MetroReaderXML metroReaderXML = new MetroReaderXML(this);
         Metro metro = metroReaderXML.createMetro();
         ArrayList<Line> lines = metro.getLines();
-        for (Line tempLine: lines) {
+        for (Line tempLine : lines) {
             if (tempLine.getName().equals(lineName)) {
                 this.stations = tempLine.getStations();
                 this.lineColorHex = tempLine.getColor();
@@ -281,6 +273,7 @@ public class PlayGameActivity extends AppCompatActivity {
      * This method set the current Station Question:
      * - Set current Station Data and View
      * - Set current Alternatives Data and Views
+     *
      * @param position position to set the data
      */
     private void setCurrentStationQuestion(int position) {
@@ -299,12 +292,12 @@ public class PlayGameActivity extends AppCompatActivity {
 
         // Actualizar las descripciones de accesibilidad
         updateAlternativeAccessibilityDescriptions();
-        
+
         // Actualizar la descripción del progreso de la pregunta
         TextView currentNumberQuestion = findViewById(R.id.textViewCurrentNumberQuestion);
         TextView maxPosition = findViewById(R.id.textViewMaxPosition);
-        String accessibilityText = getString(R.string.accessibility_current_question, 
-                Integer.parseInt(currentNumberQuestion.getText().toString()), 
+        String accessibilityText = getString(R.string.accessibility_current_question,
+                Integer.parseInt(currentNumberQuestion.getText().toString()),
                 Integer.parseInt(maxPosition.getText().toString()));
         currentNumberQuestion.setContentDescription(accessibilityText);
     }
@@ -316,7 +309,9 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void setStationView(int position) {
-        if (position == 0) {return;}
+        if (position == 0) {
+            return;
+        }
         float margin = this.calculateMargin(position);
         this.drawStationView(margin, this.currentStationName, this.lineColorHex);
         this.scrollView();
@@ -328,6 +323,7 @@ public class PlayGameActivity extends AppCompatActivity {
         float offset = 10 * position;
         return margin + (sizeStation * position) - offset;
     }
+
     private void setCurrentNumberStationView(int position) {
         TextView textViewCurrentNumberQuestion = findViewById(R.id.textViewCurrentNumberQuestion);
         textViewCurrentNumberQuestion.setText(String.valueOf(position));
@@ -370,18 +366,17 @@ public class PlayGameActivity extends AppCompatActivity {
             currentTextView.setText(currentStation.getName());
         }
 
-        Animation scaleAnimation = AnimationUtils.loadAnimation(this,R.anim.scale);
+        Animation scaleAnimation = AnimationUtils.loadAnimation(this, R.anim.scale);
 
 
         // OnClickListener
-        for (TextView textView: alternativesTextView) {
+        for (TextView textView : alternativesTextView) {
             String lineName = textView.getText().toString();
             textView.setOnClickListener(view -> {
                 view.startAnimation(scaleAnimation);
                 this.checkAlternative(lineName);
             });
         }
-
 
 
     }
@@ -416,7 +411,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     public void onWinLevel() {
         this.stopMusicGameplay();
-        this.stopTimer(); 
+        this.stopTimer();
         // Reproduce win sound
         MediaPlayerReproducer.getInstance().reproduceSoundWinLevel(this);
         this.updateProgressInfo();
@@ -432,18 +427,18 @@ public class PlayGameActivity extends AppCompatActivity {
     private void updateProgressInfo() {
 
         SharedPreferences sharedPref = this.getSharedPreferences(
-                String.valueOf(R.string.app_name),Context.MODE_PRIVATE);
+                String.valueOf(R.string.app_name), Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPref.edit();
         // Check if we have updated this level before
-        if(!sharedPref.getBoolean(lineName, false)) {
+        if (!sharedPref.getBoolean(lineName, false)) {
             int lastScore = sharedPref.getInt("score", 0);
             // Score
             if (lastScore < 6) {
-                editor.putInt("score",lastScore + 1);
+                editor.putInt("score", lastScore + 1);
             }
             // Star
-            editor.putBoolean(this.lineName,true);
+            editor.putBoolean(this.lineName, true);
             editor.apply();
         }
     }
@@ -460,7 +455,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
         winningButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, MenuMetroActivity.class);
-            intent.putExtra("RateIt",true);
+            intent.putExtra("RateIt", true);
             startActivity(intent);
         });
         winningDialog.show();
@@ -472,8 +467,8 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void stopMusicGameplay() {
-        if(isReproducingGameplayMusic) {
-            if(mediaPlayerGameplayGameplay != null) {
+        if (isReproducingGameplayMusic) {
+            if (mediaPlayerGameplayGameplay != null) {
                 this.mediaPlayerGameplayGameplay.stop();
                 isReproducingGameplayMusic = false;
             }
@@ -495,7 +490,7 @@ public class PlayGameActivity extends AppCompatActivity {
         ImageView resetLevelImageView = lostDialog.findViewById(R.id.imageViewResetLevel);
         ImageView imageViewAds = lostDialog.findViewById(R.id.imageViewAds);
 
-        resetLevelImageView.setOnClickListener(listener-> {
+        resetLevelImageView.setOnClickListener(listener -> {
             MediaPlayerReproducer.getInstance().reproduceClickSound(this);
             this.resetLevel();
         });
@@ -506,36 +501,20 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void showAds(Dialog lostDialog) {
-        // Add this flag for local testing
-        // Set to true for local testing, false for production
-        boolean isTestMode = false;
-        if (isTestMode) {
-            // Simulate ad viewing in test mode
-            new Handler().postDelayed(() -> {
-                // Simulate ad completion after 1 second
-                lostDialog.dismiss();
-                // Restart timer and continue the game
-                restartTimer();
-                // Resume gameplay music if it was enabled
-                if (!isReproducingGameplayMusic && MediaPlayerReproducer.getInstance().getMusicBoolean()) {
-                    reproduceMusic();
+        if (rewardedAd != null) {
+            rewardedAd.show(this, new OnUserEarnedRewardListener() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    // Handle the reward.
+                    lostDialog.dismiss();
+                    restartTimer();
+                    // Resume gameplay music if it was enabled
+                    if (!isReproducingGameplayMusic && MediaPlayerReproducer.getInstance().getMusicBoolean()) {
+                        reproduceMusic();
+                    }
                 }
-                Toast.makeText(this, "Test Mode: Ad simulation completed", Toast.LENGTH_SHORT).show();
-            }, 1000);
-        } else if (rewardedAd != null) {
-            rewardedAd.show(this, rewardItem -> {
-                // Handle the reward.
-                lostDialog.dismiss();
-                loadInterstitial(adRequest);
-                // Restart timer and continue the game
-                restartTimer();
-                // Resume gameplay music if it was enabled
-                if (!isReproducingGameplayMusic && MediaPlayerReproducer.getInstance().getMusicBoolean()) {
-                    reproduceMusic();
-                }
+
             });
-        } else {
-            Toast.makeText(this, "No ad available", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -543,8 +522,8 @@ public class PlayGameActivity extends AppCompatActivity {
     private void restartTimer() {
         // Reset progress value
         currentProgress = timeRemaining * 10;
-        progressBar.setProgress((int)currentProgress);
-        
+        progressBar.setProgress((int) currentProgress);
+
         // Start timer again
         startProgressBarTimer();
     }
@@ -569,27 +548,27 @@ public class PlayGameActivity extends AppCompatActivity {
         TextView alternative4 = findViewById(R.id.textViewAlternative4);
         TextView lineNameView = findViewById(R.id.lineName);
         ProgressBar timeBar = findViewById(R.id.timeLeftProgressBar);
-        
+
         // Hacer que los elementos sean focusables para TalkBack
         alternative1.setFocusable(true);
         alternative2.setFocusable(true);
         alternative3.setFocusable(true);
         alternative4.setFocusable(true);
-        
+
         // Configurar descripciones de contenido
         lineNameView.setContentDescription(getString(R.string.line_name_description) + ": " + lineNameView.getText());
         timeBar.setContentDescription(getString(R.string.time_progress_bar_description));
-        
+
         // Actualizar las descripciones de las alternativas
         updateAlternativeAccessibilityDescriptions();
     }
-    
+
     private void updateAlternativeAccessibilityDescriptions() {
         TextView alternative1 = findViewById(R.id.textViewAlternative1);
         TextView alternative2 = findViewById(R.id.textViewAlternative2);
         TextView alternative3 = findViewById(R.id.textViewAlternative3);
         TextView alternative4 = findViewById(R.id.textViewAlternative4);
-        
+
         alternative1.setContentDescription(getString(R.string.accessibility_station_name, alternative1.getText()));
         alternative2.setContentDescription(getString(R.string.accessibility_station_name, alternative2.getText()));
         alternative3.setContentDescription(getString(R.string.accessibility_station_name, alternative3.getText()));
