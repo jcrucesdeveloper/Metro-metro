@@ -1,7 +1,5 @@
 # Metro Metro
 
-![Logo de Metro Metro](app/src/main/res/drawable/menu_logo.png)
-
 ## Descripción
 
 Metro Metro es un juego educativo para Android que ayuda a los usuarios a aprender las estaciones del Metro de Santiago de Chile de manera divertida e interactiva. El juego desafía a los jugadores a identificar las estaciones correctas en diferentes líneas del metro.
